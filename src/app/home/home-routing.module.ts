@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
+  },
+  {
+    path: 'cronogram',
+    loadChildren: () => import('./cronogram/cronogram.module').then( m => m.CronogramPageModule)
   }
 ];
 

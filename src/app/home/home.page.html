@@ -1,20 +1,52 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding">
+    
+    <ion-row>
+        <ion-col>
+            <ion-text class="ion-text-center" color="primary">
+                <h1>
+                    Qual robo voce deseja escolher?
+                </h1>
+            </ion-text>
+        </ion-col>
+    </ion-row>
+    
+    <ion-row class="ion-justify-content-center">
+        <ion-col size="auto">
+            <ion-text class="ion-text-center" color="primary">
+                <p>Alimentacao</p>
+            </ion-text>
+            <img src="https://pixy.org/src/10/102286.png"  width="90px" height="90px">
+        </ion-col>
+        <ion-col size="auto">
+            <ion-text class="ion-text-center" color="primary">
+                <p>Educ. Fisica</p>
+            </ion-text>
+            <img src="https://pixy.org/src/10/102286.png"  width="90px" height="90px">
+        </ion-col>
+    </ion-row>
+    
+    <ion-row class="ion-justify-content-center">
+        <ion-col size="auto">
+            <ion-text class="ion-text-center" color="primary">
+                <p>Estudos</p>
+            </ion-text>
+            <img src="https://pixy.org/src/10/102286.png" width="90px" height="90px">
+        </ion-col>
+        <ion-col size="auto">
+            <ion-text class="ion-text-center" color="primary">
+                <p>Produtividade</p>
+            </ion-text>
+            <img src="https://pixy.org/src/10/102286.png" width="90px" height="90px">
+        </ion-col>
+    </ion-row>
+    
+    <ion-row class="ion-justify-content-center">
+        <ion-col size="auto">
+            <ion-button color="primary" expand="block" shape="round" routerLink="/home/cronogram">
+                <p>Confirmar</p>
+                <ion-icon name="send-sharp" slot="end"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
 </ion-content>

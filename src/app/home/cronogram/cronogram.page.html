@@ -4,7 +4,28 @@
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-buttons slot="end">
-            <img src="https://randomuser.me/api/portraits/men/82.jpg" alt="Homem-careca" style="border-radius:50%" width="45px" height="45px">
+            <ion-fab horizontal="end" vertical="start" slot="fixed">
+                <ion-fab-button color="light">
+                    <img src="https://randomuser.me/api/portraits/men/82.jpg" alt="Homem-careca" style="border-radius:50%" width="45px" height="45px">
+                </ion-fab-button>
+                <ion-fab-list side="start">
+                    <ion-fab-button color="light">
+                        <ion-text color="primary">
+                            <p>XP<ion-progress-bar color="primary" value="0.5"></ion-progress-bar></p>
+                        </ion-text>
+                    </ion-fab-button>
+                    <ion-fab-button color="light">
+                        <ion-text color="primary">
+                            <p style="font-size:10px; margin:0px">Moedas<ion-text color="warning"><p style="font-size:10px; margin:0px">50</p></ion-text></p>
+                        </ion-text>
+                    </ion-fab-button>
+                    <ion-fab-button color="light">
+                        <ion-text color="primary">
+                            <p style="font-size:10px; margin:0px">Desafios<ion-text color="danger"><p style="font-size:10px; margin:0px">0</p></ion-text></p>
+                        </ion-text>
+                    </ion-fab-button>
+                </ion-fab-list>
+            </ion-fab>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
@@ -51,5 +72,4 @@
 
 <ion-content class="ion-padding">
     <ion-router-outlet id="menu-content"></ion-router-outlet>
-    
 </ion-content>

@@ -6,7 +6,13 @@ import { CronogramPage } from './cronogram.page';
 const routes: Routes = [
   {
     path: '',
-    component: CronogramPage
+    component: CronogramPage,
+    children: [
+        {
+            path: 'skinstore',
+            loadChildren: () => import('./skinstore/skinstore.module').then( m => m.SkinstorePageModule)
+        }
+    ]
   }
 ];
 

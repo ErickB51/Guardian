@@ -38,34 +38,48 @@
     </ion-header>
     <ion-content>
         <ion-list>
-            <ion-item>
-                <ion-icon slot="start" name="calendar-sharp"></ion-icon>
-                <ion-label>Cronograma</ion-label>
-            </ion-item>
-            <ion-item>
-                <ion-icon slot="start" name="school-sharp"></ion-icon>
-                <ion-label>Guardioes</ion-label>
-            </ion-item>
-            <ion-item>
-                <ion-icon slot="start" name="people-sharp"></ion-icon>
-                <ion-label>Influenciadores</ion-label>
-            </ion-item>
-            <ion-item>
-                <ion-icon slot="start" name="time-sharp"></ion-icon>
-                <ion-label>Valor do tempo</ion-label>
-            </ion-item>
-            <ion-item>
-                <ion-icon slot="start" name="medal-sharp"></ion-icon>
-                <ion-label>Conquistas</ion-label>
-            </ion-item>
-            <ion-item>
-                <ion-icon slot="start" name="storefront-sharp"></ion-icon>
-                <ion-label>Loja de Visuais</ion-label>
-            </ion-item>
-            <ion-item>
-                <ion-icon slot="start" name="settings-sharp"></ion-icon>
-                <ion-label>Configuracoes</ion-label>
-            </ion-item>
+            <ion-menu-toggle>
+                <ion-item routerLink="/home/cronogram">
+                    <ion-icon slot="start" name="calendar-sharp"></ion-icon>
+                    <ion-label>Cronograma</ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle>
+                <ion-item>
+                    <ion-icon slot="start" name="school-sharp"></ion-icon>
+                    <ion-label>Guardioes</ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle>
+                <ion-item>
+                    <ion-icon slot="start" name="people-sharp"></ion-icon>
+                    <ion-label>Influenciadores</ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle>
+                <ion-item>
+                    <ion-icon slot="start" name="time-sharp"></ion-icon>
+                    <ion-label>Valor do tempo</ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle>
+                <ion-item>
+                    <ion-icon slot="start" name="medal-sharp"></ion-icon>
+                    <ion-label>Conquistas</ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle>
+                <ion-item menuClose="menu-content" routerLink="/home/cronogram/skinstore">
+                    <ion-icon slot="start" name="storefront-sharp"></ion-icon>
+                    <ion-label>Loja de Visuais</ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle>
+                <ion-item>
+                    <ion-icon slot="start" name="settings-sharp"></ion-icon>
+                    <ion-label>Configuracoes</ion-label>
+                </ion-item>
+            </ion-menu-toggle>
         </ion-list>
     </ion-content>
 </ion-menu>

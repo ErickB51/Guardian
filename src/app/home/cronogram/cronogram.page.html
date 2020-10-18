@@ -9,17 +9,17 @@
                     <img src="https://randomuser.me/api/portraits/men/82.jpg" alt="Homem-careca" style="border-radius:50%" width="45px" height="45px">
                 </ion-fab-button>
                 <ion-fab-list side="start">
-                    <ion-fab-button color="light">
+                    <ion-fab-button color="light" routerLink="/home/cronogram/guardians">
                         <ion-text color="primary">
                             <p>XP<ion-progress-bar color="primary" value="0.5"></ion-progress-bar></p>
                         </ion-text>
                     </ion-fab-button>
-                    <ion-fab-button color="light">
+                    <ion-fab-button color="light" routerLink="/home/cronogram/skinstore">
                         <ion-text color="primary">
                             <p style="font-size:10px; margin:0px">Moedas<ion-text color="warning"><p style="font-size:10px; margin:0px">50</p></ion-text></p>
                         </ion-text>
                     </ion-fab-button>
-                    <ion-fab-button color="light">
+                    <ion-fab-button color="light" routerLink="/home/cronogram/prizes">
                         <ion-text color="primary">
                             <p style="font-size:10px; margin:0px">Desafios<ion-text color="danger"><p style="font-size:10px; margin:0px">0</p></ion-text></p>
                         </ion-text>
@@ -39,31 +39,19 @@
     <ion-content>
         <ion-list>
             <ion-menu-toggle>
-                <ion-item routerLink="/home/cronogram">
+                <ion-item routerLink="/home/cronogram/calendar">
                     <ion-icon slot="start" name="calendar-sharp"></ion-icon>
                     <ion-label>Cronograma</ion-label>
                 </ion-item>
             </ion-menu-toggle>
             <ion-menu-toggle>
-                <ion-item>
+                <ion-item routerLink="/home/cronogram/guardians">
                     <ion-icon slot="start" name="school-sharp"></ion-icon>
                     <ion-label>Guardioes</ion-label>
                 </ion-item>
             </ion-menu-toggle>
             <ion-menu-toggle>
-                <ion-item>
-                    <ion-icon slot="start" name="people-sharp"></ion-icon>
-                    <ion-label>Influenciadores</ion-label>
-                </ion-item>
-            </ion-menu-toggle>
-            <ion-menu-toggle>
-                <ion-item>
-                    <ion-icon slot="start" name="time-sharp"></ion-icon>
-                    <ion-label>Valor do tempo</ion-label>
-                </ion-item>
-            </ion-menu-toggle>
-            <ion-menu-toggle>
-                <ion-item>
+                <ion-item routerLink="/home/cronogram/prizes">
                     <ion-icon slot="start" name="medal-sharp"></ion-icon>
                     <ion-label>Conquistas</ion-label>
                 </ion-item>

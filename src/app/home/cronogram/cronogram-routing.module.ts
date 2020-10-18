@@ -15,6 +15,18 @@ const routes: Routes = [
         {
             path: 'settings',
             loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
+        },
+        {
+            path: 'calendar',
+            loadChildren: () => import('./calendar/calendar.module').then( m => m.CalendarPageModule)
+        },
+        {
+            path: 'guardians',
+            loadChildren: () => import('./guardians/guardians.module').then( m => m.GuardiansPageModule)
+        },
+        {
+            path: 'prizes',
+            loadChildren: () => import('./prizes/prizes.module').then( m => m.PrizesPageModule)
         }
     ]
   }

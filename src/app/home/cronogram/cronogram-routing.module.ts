@@ -11,6 +11,10 @@ const routes: Routes = [
         {
             path: 'skinstore',
             loadChildren: () => import('./skinstore/skinstore.module').then( m => m.SkinstorePageModule)
+        },
+        {
+            path: 'settings',
+            loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
         }
     ]
   }

@@ -27,6 +27,11 @@ const routes: Routes = [
         {
             path: 'prizes',
             loadChildren: () => import('./prizes/prizes.module').then( m => m.PrizesPageModule)
+        },
+        {
+            path: '',
+            redirectTo: 'calendar',
+            pathMatch: 'full'
         }
     ]
   }

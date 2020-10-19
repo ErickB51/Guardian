@@ -11,17 +11,17 @@
                 <ion-fab-list side="start">
                     <ion-fab-button color="light" routerLink="/home/cronogram/guardians">
                         <ion-text color="primary">
-                            <p>XP<ion-progress-bar color="primary" value="0.5"></ion-progress-bar></p>
+                            <p>XP<ion-progress-bar color="primary" [value]="this.accountService.verXPGuardiaoEquipado()"></ion-progress-bar></p>
                         </ion-text>
                     </ion-fab-button>
                     <ion-fab-button color="light" routerLink="/home/cronogram/skinstore">
                         <ion-text color="primary">
-                            <p style="font-size:10px; margin:0px">Moedas<ion-text color="warning"><p style="font-size:10px; margin:0px">50</p></ion-text></p>
+                            <p style="font-size:10px; margin:0px">Moedas<ion-text color="warning"><p style="font-size:10px; margin:0px">{{this.accountService.moedas}}</p></ion-text></p>
                         </ion-text>
                     </ion-fab-button>
                     <ion-fab-button color="light" routerLink="/home/cronogram/prizes">
                         <ion-text color="primary">
-                            <p style="font-size:10px; margin:0px">Premios<ion-text color="danger"><p style="font-size:10px; margin:0px">0</p></ion-text></p>
+                            <p style="font-size:10px; margin:0px">Premios<ion-text color="danger"><p style="font-size:10px; margin:0px">{{this.accountService.conquistas.length}}</p></ion-text></p>
                         </ion-text>
                     </ion-fab-button>
                 </ion-fab-list>

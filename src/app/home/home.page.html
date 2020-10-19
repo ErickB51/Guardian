@@ -27,8 +27,8 @@
             </ion-text>
         </ion-slide>
 
-        <ion-slide class="ion-aligns-center">
-            <ion-row>
+        <ion-slide class="ion-align-items-center">
+            <ion-row class="ion-padding-bottom">
                 <ion-col>
                     <ion-text class="ion-text-center" color="primary">
                         <h1>
@@ -38,18 +38,18 @@
                 </ion-col>
             </ion-row>
 
-            <ion-row class="ion-justify-content-center">
+            <ion-row class="ion-justify-content-center ion-padding-top">
                 <ion-col size-lg="2" size-md="2" size-sm="4" size="5">
                     <ion-text class="ion-text-center ion-text-nowrap" color="primary">
                         <h5>Personal</h5>
                     </ion-text>
-                    <img src="https://i.ibb.co/0jVsxPC/robo-1.png"  width="90px" height="90px" style="border-radius:50%; border:1px; border-color:black;">
+                    <img (click)="this.accountService.escolherGuardiao('Personal')" src="https://i.ibb.co/0jVsxPC/robo-1.png"  width="90px" height="90px" style="border-radius:50%; border:1px; border-color:black;">
                 </ion-col>
                 <ion-col size-lg="2" size-md="2" size-sm="4" size="5">
                     <ion-text class="ion-text-center ion-text-nowrap" color="primary">
                         <h5>Mentor</h5>
                     </ion-text>
-                    <img src="https://i.ibb.co/DgmN4J6/robo-2.png"  width="90px" height="90px" style="border-radius:50%; border:1px; border-color:black;">
+                    <img (click)="this.accountService.escolherGuardiao('Mentor')" src="https://i.ibb.co/DgmN4J6/robo-2.png"  width="90px" height="90px" style="border-radius:50%; border:1px; border-color:black;">
                 </ion-col>
             </ion-row>
 
@@ -58,22 +58,13 @@
                     <ion-text class="ion-text-center ion-text-nowrap" color="primary">
                         <h5>Dieta</h5>
                     </ion-text>
-                    <img src="https://i.ibb.co/7GBMPgX/robo-3.png" width="90px" height="90px" style="border-radius:50%; border:1px; border-color:black;">
+                    <img (click)="this.accountService.escolherGuardiao('Dieta')" src="https://i.ibb.co/7GBMPgX/robo-3.png" width="90px" height="90px" style="border-radius:50%; border:1px; border-color:black;">
                 </ion-col>
                 <ion-col size-lg="2" size-md="2" size-sm="4" size="5">
                     <ion-text class="ion-text-center ion-text-nowrap" color="primary">
                         <h5>Produtividade</h5>
                     </ion-text>
-                    <img src="https://i.ibb.co/WnjYvS9/robo-4.png" width="90px" height="90px" style="border-radius:50%; border:1px; border-color:black;">
-                </ion-col>
-            </ion-row>
-
-            <ion-row class="ion-justify-content-center ion-padding-top">
-                <ion-col size="auto">
-                    <ion-button size="default" color="primary" expand="block" shape="round" routerLink="/home/cronogram">
-                        Confirmar 
-                        <ion-icon name="send-sharp" slot="end"></ion-icon>
-                    </ion-button>
+                    <img (click)="this.accountService.escolherGuardiao('Produtividade')" src="https://i.ibb.co/WnjYvS9/robo-4.png" width="90px" height="90px" style="border-radius:50%; border:1px; border-color:black;">
                 </ion-col>
             </ion-row>
         </ion-slide>

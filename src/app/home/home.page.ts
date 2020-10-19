@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { AccountService } from '../account.service';
 
 @Component({
   selector: 'app-home',
@@ -6,8 +7,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-
-  constructor() {}
+    
+  constructor(private accountService: AccountService) {}
 
   ngOnInit() {}
 

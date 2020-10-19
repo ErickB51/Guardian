@@ -12,7 +12,18 @@ export class AccountService {
   public moedas = 10000;
   
   public conquistas = [
-    {titulo: '', habilitado: false}
+    {titulo: 'Novato', tipo: 1, progresso: 0.0, tarefas: 1},
+    {titulo: 'Aprendiz', tipo: 1, progresso: 0.0, tarefas: 7},
+    {titulo: 'Guerreiro', tipo: 1, progresso: 0.0, tarefas: 15},
+    {titulo: 'Persistente', tipo: 1, progresso: 0.0, tarefas: 30},
+    {titulo: 'Audacioso', tipo: 1, progresso: 0.0, tarefas: 90},
+    {titulo: 'Praticamente uma Maquina', tipo: 1, progresso: 0.0, tarefas: 365},
+    {titulo: 'Chique', tipo: 2, progresso: 0.0, tarefas: 1},
+    {titulo: 'Refinado', tipo: 2,progresso: 0.0, tarefas: 5},
+    {titulo: 'Aspirante da Moda', tipo: 2, progresso: 0.0, tarefas: 10},
+    {titulo: 'Chavoso', tipo: 2, progresso: 0.0, tarefas: 15},
+    {titulo: 'Estilo Unico', tipo: 2, progresso: 0.0, tarefas: 20},
+    {titulo: 'Burgues', tipo: 2, progresso: 0.0, tarefas: 25}    
   ];
 
   public visuais = [
@@ -53,7 +64,7 @@ export class AccountService {
   verConquistas(){
     var temp = 0;
     for(var i=0; i<this.conquistas.length; i++){
-        if(this.conquistas[i].habilitado){
+        if(this.conquistas[i].progresso == 1.0){
             temp += 1;
         }
     }
@@ -75,6 +86,7 @@ export class AccountService {
             this.moedas = this.moedas - valor;
             this.visuais.push({nome: visual, equipado: false});
             console.log('Comprado com sucesso');
+            this.atualizarConquistas(2);
             return 'Comprado com Sucesso!';
         }else{
             console.log('Sem dinheiro');
@@ -84,6 +96,18 @@ export class AccountService {
         console.log('Voce ja tem este visual');
         return 'Voce ja tem este visual!';
     }
+  }
+
+  atualizarConquistas(tipo: number){
+    
+    for(var i=0; i<this.conquistas.length; i++){
+        if(this.conquistas[i].tipo == tipo){
+            if(this.conquistas[i].progresso < 1.0){
+                this.conquistas[i].progresso += 1/this.conquistas[i].tarefas;
+            }
+        }
+    }
+
   }
 
 }

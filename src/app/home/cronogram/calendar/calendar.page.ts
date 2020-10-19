@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CalendarComponent } from 'ionic2-calendar';
 import { EventModalComponent } from '../../../components/event-modal/event-modal.component';
 import { ModalController } from '@ionic/angular';
+import { AccountService } from '../../../account.service';
 
 @Component({
   selector: 'app-calendar',
@@ -9,9 +10,6 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./calendar.page.scss'],
 })
 export class CalendarPage implements OnInit {
-
-  //Lista de eventos
-  eventSource = [];
 
   viewTitle: string;
 
@@ -24,7 +22,7 @@ export class CalendarPage implements OnInit {
 
   @ViewChild(CalendarComponent) myCal: CalendarComponent;
 
-  constructor(private modalController: ModalController) {}
+  constructor(private modalController: ModalController, private accountService: AccountService) {}
 
   ngOnInit() {}
   
@@ -40,20 +38,9 @@ export class CalendarPage implements OnInit {
     this.viewTitle = title;
   }
 
-  createEvent(titulo: string, guardiao: string, data: Date, inicio: number, final: number, diaTodo: boolean){
-    this.eventSource.push({
-                title: titulo,
-                startTime: inicio,
-                endTime: final,
-                allDay: diaTodo,
-                guardian: guardiao
-            });
-  }
-
   removeEvents() {
-    this.eventSource = [];
+    this.accountService.tarefas = [];
   }
-
 
   public async showModal(){
     

@@ -11,21 +11,6 @@
         </ion-segment-button>
     </ion-segment>
 
-    <!--
-    <ion-row>
-        <ion-col size="6">
-        <ion-button (click)="createRandomEvents()" expand="block" fill="outline">
-            Add Randon Events
-        </ion-button>
-        </ion-col>
-        <ion-col size="6">
-        <ion-button (click)="removeEvents()" expand="block" fill="outline">
-            Remove all Events
-        </ion-button>
-        </ion-col>
-    </ion-row>
-    -->
-
     <ion-row class="ion-justify-content-center">
         <ion-col size="2">
             <ion-button fill="clear" (click)="back()">
@@ -45,7 +30,7 @@
     </ion-row>
 
     <calendar
-        [eventSource]="eventSource"
+        [eventSource]="this.accountService.tarefas"
         [calendarMode]="calendar.mode"
         [currentDate]="calendar.currentDate"
         (onTitleChanged)="onViewTitleChanged($event)"

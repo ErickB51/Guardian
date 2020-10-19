@@ -34,10 +34,10 @@ export class AccountService {
   ];
 
   public guardioes = [
-    {tipo: 'Personal', xp: 0, selecionado: false, visual: 'Amarelao' },
-    {tipo: 'Mentor', xp: 0, selecionado: false, visual: 'Verdao' },
-    {tipo: 'Dieta,', xp: 0, selecionado: false, visual: 'Cinzao' },
-    {tipo: 'Produtividade', xp: 0, selecionado: false, visual: 'Vermelhao' }
+    {tipo: 'Personal', xp: 0.0, selecionado: false, visual: 'Amarelao', lvl: 1},
+    {tipo: 'Mentor', xp: 0.0, selecionado: false, visual: 'Verdao', lvl: 1},
+    {tipo: 'Dieta', xp: 0.0, selecionado: false, visual: 'Cinzao', lvl: 1},
+    {tipo: 'Produtividade', xp: 0.0, selecionado: false, visual: 'Vermelhao', lvl: 1}
   ];
 
   public tarefas = [];
@@ -56,6 +56,24 @@ export class AccountService {
     for(var i=0; i<this.guardioes.length; i++){
         if(this.guardioes[i].selecionado){
             return this.guardioes[i].xp;
+        }
+    }
+    return 0;
+  }
+
+  verXPGuardiao(guardiao: string){
+    for(var i=0; i<this.guardioes.length; i++){
+        if(this.guardioes[i].tipo === guardiao){
+            return this.guardioes[i].xp;
+        }
+    }
+    return 0;
+  }
+
+  verLvlGuardiao(guardiao: string){
+    for(var i=0; i<this.guardioes.length; i++){
+        if(this.guardioes[i].tipo === guardiao){
+            return this.guardioes[i].lvl;
         }
     }
     return 0;
@@ -107,7 +125,27 @@ export class AccountService {
             }
         }
     }
+  }
 
+  verificarGuardiao(guardiao: string){
+    for(var i=0; i<this.guardioes.length; i++){
+        if(this.guardioes[i].tipo === guardiao){
+            if(this.guardioes[i].selecionado){
+                return true;
+            }
+        }
+    }
+    return false;
+  }
+
+  reescolherGuardiao(guardiao: string){
+    for(var i=0; i<this.guardioes.length; i++){
+        if(this.guardioes[i].tipo === guardiao){
+            this.guardioes[i].selecionado = true;
+        }else{
+            this.guardioes[i].selecionado = false;
+        }
+    }
   }
 
 }

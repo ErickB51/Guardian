@@ -15,10 +15,10 @@
                 <div class="ion-text-center">
                     <ion-row expand="block">
                         <ion-col>
-                            <ion-button color="tertiary" size='small'>Selecionar</ion-button>
+                                <ion-button (click)="this.accountService.reescolherGuardiao('Personal')" color="tertiary" size='small' [disabled]="this.accountService.verificarGuardiao('Personal')">{{this.accountService.verificarGuardiao('Personal') ? 'Selecionado' : 'Selecionar' }}</ion-button>
                             <ion-text color="primary">
-                              <p>XP<ion-progress-bar color="primary" value="0.0"></ion-progress-bar></p>
-                              <p><strong>Level 1</strong></p>
+                              <p>XP<ion-progress-bar color="primary" [value]="this.accountService.verXPGuardiao('Personal')"></ion-progress-bar></p>
+                              <p><strong>Level {{this.accountService.verLvlGuardiao('Personal')}}</strong></p>
                           </ion-text>
                         </ion-col>
                     </ion-row>
@@ -42,10 +42,10 @@
                   <div class="ion-text-center">
                       <ion-row expand="block">
                           <ion-col>
-                              <ion-button color="tertiary" size="small" disabled>Selecionado!</ion-button>
+                              <ion-button (click)="this.accountService.reescolherGuardiao('Mentor')" color="tertiary" size="small" [disabled]="this.accountService.verificarGuardiao('Mentor')">{{this.accountService.verificarGuardiao('Mentor') ? 'Selecionado' : 'Selecionar' }}</ion-button>
                               <ion-text color="primary">
-                                <p>XP<ion-progress-bar color="primary" value="0.0"></ion-progress-bar></p>
-                                <p><strong>Level 1</strong></p>
+                                <p>XP<ion-progress-bar color="primary" [value]="this.accountService.verXPGuardiao('Mentor')"></ion-progress-bar></p>
+                                <p><strong>Level {{this.accountService.verLvlGuardiao('Mentor')}}</strong></p>
                             </ion-text>
                           </ion-col>
                       </ion-row>
@@ -69,10 +69,10 @@
                   <div class="ion-text-center">
                       <ion-row expand="block">
                           <ion-col>
-                              <ion-button color="tertiary" size='small'>Selecionar</ion-button>
+                              <ion-button (click)="this.accountService.reescolherGuardiao('Dieta')" color="tertiary" size='small' [disabled]="this.accountService.verificarGuardiao('Dieta')">{{this.accountService.verificarGuardiao('Dieta') ? 'Selecionado' : 'Selecionar' }}</ion-button>
                               <ion-text color="primary">
-                                <p>XP<ion-progress-bar color="primary" value="0.0"></ion-progress-bar></p>
-                                <p><strong>Level 1</strong></p>
+                                <p>XP<ion-progress-bar color="primary" [value]="this.accountService.verXPGuardiao('Dieta')"></ion-progress-bar></p>
+                                <p><strong>Level {{this.accountService.verLvlGuardiao('Dieta')}}</strong></p>
                             </ion-text>
                           </ion-col>
                       </ion-row>
@@ -96,10 +96,10 @@
                   <div class="ion-text-center">
                       <ion-row expand="block">
                           <ion-col>
-                              <ion-button color="tertiary" size='small'>Selecionar</ion-button>
+                              <ion-button (click)="this.accountService.reescolherGuardiao('Produtividade')" color="tertiary" size='small' [disabled]="this.accountService.verificarGuardiao('Produtividade')">{{this.accountService.verificarGuardiao('Produtividade') ? 'Selecionado' : 'Selecionar' }}</ion-button>
                               <ion-text color="primary">
-                                <p>XP<ion-progress-bar color="primary" value="0.0"></ion-progress-bar></p>
-                                <p><strong>Level 1</strong></p>
+                                <p>XP<ion-progress-bar color="primary" [value]="this.accountService.verXPGuardiao('Produtividade')"></ion-progress-bar></p>
+                                <p><strong>Level {{this.accountService.verLvlGuardiao('Produtividade')}}</strong></p>
                             </ion-text>
                           </ion-col>
                       </ion-row>

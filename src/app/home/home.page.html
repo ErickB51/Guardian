@@ -1,52 +1,84 @@
-<ion-content class="ion-padding">
-    
-    <ion-row>
-        <ion-col>
-            <ion-text class="ion-text-center" color="primary">
-                <h1>
-                    Qual robo voce deseja escolher?
-                </h1>
+<ion-content scroll-y="false">
+    <ion-slides>
+
+        <ion-slide>
+            <div class="slide">
+                <img id="img" src="https://www.digisystem.com.br/wp-content/uploads/2020/07/imagem_rpa_digisystem.png"/>
+                <ion-text color="primary">
+                    <h2>Bem vindo</h2>
+                    <p>O <b>aplicativo Guardian</b> promete revolucionar a maneira como voce gerencia suas tarefas. <b><i>Deslize para a direita</i></b>, entenda o que e o <b>Guardian</b> e junte-se a nos!</p>
+                </ion-text>
+            </div>
+        </ion-slide>
+
+        <ion-slide>
+            <img id="img" src="https://www.digisystem.com.br/wp-content/uploads/2020/07/imagem_rpa_digisystem.png"/>
+            <ion-text color="primary">
+                <h2>O que e o Guardian?</h2>
+                <p><b>Guardian</b> e uma aplicacao para dipositivos moveis que auxilia voce a gerenciar suas tarefas, aumentando sua produtividade e eficiencia! <b><i>Continue deslizando...</i></b></p>
             </ion-text>
-        </ion-col>
-    </ion-row>
-    
-    <ion-row class="ion-justify-content-center">
-        <ion-col size="auto" style="padding-right:80px">
-            <ion-text class="ion-text-center" color="primary">
-                <p>Personal</p>
+        </ion-slide>
+
+        <ion-slide>
+            <img id="img" src="https://www.digisystem.com.br/wp-content/uploads/2020/07/imagem_rpa_digisystem.png"/>
+            <ion-text color="primary">
+                <h2>Mas como funciona?</h2>
+                <p>No <b>Guardian</b> voce encontrara assistentes virtuais que ajudarao voce a progredir naquilo que voce escolher! Alem de tudo, voce pode <b>personalizar</b> seus assistentes (tambem chamados de guardioes), ganhar <b>experiencia</b> e se desafiar a cada dia em nosso painel de <b>conquistas</b>. <b><i>Mais uma deslizada, por favor?</i></b></p>
             </ion-text>
-            <img src="https://i.ibb.co/0jVsxPC/robo-1.png"  width="90px" height="90px" style="border-radius:50%; border:1px; border-color:black;">
-        </ion-col>
-        <ion-col size="auto">
-            <ion-text class="ion-text-center" color="primary">
-                <p>Mentor</p>
-            </ion-text>
-            <img src="https://i.ibb.co/DgmN4J6/robo-2.png"  width="90px" height="90px" style="border-radius:50%; border:1px; border-color:black;">
-        </ion-col>
-    </ion-row>
-    
-    <ion-row class="ion-justify-content-center">
-        <ion-col style="padding-right:80px; padding-bottom:10px" size="auto">
-            <ion-text class="ion-text-center" color="primary">
-                <p>Dieta</p>
-            </ion-text>
-            <img src="https://i.ibb.co/7GBMPgX/robo-3.png" width="90px" height="90px" style="border-radius:50%; border:1px; border-color:black;">
-        </ion-col>
-        <ion-col style="padding-bottom:30px" size="auto">
-            <ion-text class="ion-text-center" color="primary">
-                <p>Produtividade</p>
-            </ion-text>
-            <img src="https://i.ibb.co/WnjYvS9/robo-4.png" width="90px" height="90px" style="border-radius:50%; border:1px; border-color:black;">
-        </ion-col>
-    </ion-row>
-    
-    <ion-row class="ion-justify-content-center">
-        <ion-col size="auto">
-            <ion-button color="primary" expand="block" shape="round" routerLink="/home/cronogram">
-                <p>Confirmar</p>
-                <ion-icon name="send-sharp" slot="end"></ion-icon>
-            </ion-button>
-        </ion-col>
-    </ion-row>
+        </ion-slide>
+
+        <ion-slide class="ion-aligns-center">
+            <ion-row>
+                <ion-col>
+                    <ion-text class="ion-text-center" color="primary">
+                        <h1>
+                            Qual robo voce deseja escolher?
+                        </h1>
+                    </ion-text>
+                </ion-col>
+            </ion-row>
+
+            <ion-row class="ion-justify-content-center">
+                <ion-col size-lg="2" size-md="2" size-sm="4" size="5">
+                    <ion-text class="ion-text-center ion-text-nowrap" color="primary">
+                        <h5>Personal</h5>
+                    </ion-text>
+                    <img src="https://i.ibb.co/0jVsxPC/robo-1.png"  width="90px" height="90px" style="border-radius:50%; border:1px; border-color:black;">
+                </ion-col>
+                <ion-col size-lg="2" size-md="2" size-sm="4" size="5">
+                    <ion-text class="ion-text-center ion-text-nowrap" color="primary">
+                        <h5>Mentor</h5>
+                    </ion-text>
+                    <img src="https://i.ibb.co/DgmN4J6/robo-2.png"  width="90px" height="90px" style="border-radius:50%; border:1px; border-color:black;">
+                </ion-col>
+            </ion-row>
+
+            <ion-row class="ion-justify-content-center">
+                <ion-col size-lg="2" size-md="2" size-sm="4" size="5">
+                    <ion-text class="ion-text-center ion-text-nowrap" color="primary">
+                        <h5>Dieta</h5>
+                    </ion-text>
+                    <img src="https://i.ibb.co/7GBMPgX/robo-3.png" width="90px" height="90px" style="border-radius:50%; border:1px; border-color:black;">
+                </ion-col>
+                <ion-col size-lg="2" size-md="2" size-sm="4" size="5">
+                    <ion-text class="ion-text-center ion-text-nowrap" color="primary">
+                        <h5>Produtividade</h5>
+                    </ion-text>
+                    <img src="https://i.ibb.co/WnjYvS9/robo-4.png" width="90px" height="90px" style="border-radius:50%; border:1px; border-color:black;">
+                </ion-col>
+            </ion-row>
+
+            <ion-row class="ion-justify-content-center ion-padding-top">
+                <ion-col size="auto">
+                    <ion-button size="default" color="primary" expand="block" shape="round" routerLink="/home/cronogram">
+                        Confirmar 
+                        <ion-icon name="send-sharp" slot="end"></ion-icon>
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-slide>
+
+    </ion-slides>
+
 
 </ion-content>

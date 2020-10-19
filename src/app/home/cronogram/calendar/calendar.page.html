@@ -1,13 +1,13 @@
 <ion-content>
     <ion-segment [(ngModel)]="calendar.mode">
         <ion-segment-button value="month">
-            <ion-label>Month</ion-label>
+            <ion-label>Mes</ion-label>
         </ion-segment-button>
         <ion-segment-button value="week">
-            <ion-label>Week</ion-label>
+            <ion-label>Semana</ion-label>
         </ion-segment-button>
         <ion-segment-button value="day">
-            <ion-label>Day</ion-label>
+            <ion-label>Dia</ion-label>
         </ion-segment-button>
     </ion-segment>
 
@@ -26,7 +26,7 @@
     </ion-row>
     -->
 
-    <ion-row>
+    <ion-row class="ion-justify-content-center">
         <ion-col size="2">
             <ion-button fill="clear" (click)="back()">
                 <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
@@ -45,18 +45,18 @@
     </ion-row>
 
     <calendar
-        [eventSouce]="eventSource"
+        [eventSource]="eventSource"
         [calendarMode]="calendar.mode"
         [currentDate]="calendar.currentDate"
         (onTitleChanged)="onViewTitleChanged($event)"
         >
     </calendar>
-    
+
     <ion-fab style="margin-right:10px; margin-bottom:10px" horizontal="end" vertical="bottom" slot="fixed">
-        <ion-fab-button color="light">
+        <ion-fab-button (click)="showModal()" color="light">
             <ion-icon name="add"></ion-icon>
         </ion-fab-button>
     </ion-fab>
-    
+
 </ion-content>
 

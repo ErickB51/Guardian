@@ -6,9 +6,9 @@
                     Configuracoes Basicas
                 </ion-label>
             </ion-list-header>
-            <ion-item *ngFor="let entry of basicSettings">
+            <ion-item *ngFor="let entry of this.accountService.configuracoes">
                 <ion-label><p>{{entry.val}}</p></ion-label>
-                <ion-toggle slot="end" [(ngModel)]="entry.isChecked"></ion-toggle>
+                <ion-toggle slot="end" [(ngModel)]="entry.ativado"></ion-toggle>
             </ion-item>
             <ion-list-header>
                 <ion-label color="primary">
@@ -22,7 +22,6 @@
             </ion-item>
         </ion-list>
     </ion-list>
-
 
 
 </ion-content>

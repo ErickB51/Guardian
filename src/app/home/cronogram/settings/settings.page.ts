@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from '../../../account.service';
 
 @Component({
   selector: 'app-settings',
@@ -7,9 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsPage implements OnInit {
 
-  constructor() { }
-
-  public basicSettings = [ {val: "Vibracao", isChecked: true},{val: "Efeitos Sonoros", isChecked: true}]
+  constructor(private accountService: AccountService) { }
 
   ngOnInit() {
   }

@@ -26,6 +26,8 @@ export class AccountService {
     {titulo: 'Burgues', tipo: 2, progresso: 0.0, tarefas: 25}    
   ];
 
+  public configuracoes = [ {val: "Vibracao", ativado: true},{val: "Efeitos Sonoros", ativado: true} ];
+
   public visuais = [
     {nome: 'Amarelao', equipado: true},
     {nome: 'Verdao', equipado: true},

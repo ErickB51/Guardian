@@ -11,11 +11,14 @@
 <ion-content class="ion-no-padding">
     <ion-list>
         <ion-item>
-            <ion-input [(ngModel)]="newTaskName" placeholder="Titulo" disabled></ion-input>
+            <ion-input [(ngModel)]="this.newTaskName" placeholder="Titulo"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label>Data de Inicio</ion-label>
-            <ion-datetime value="2020-10-19" placeholder="Selecionar Data de Inicio" disabled></ion-datetime>
+            <ion-label>Data de Inicio:</ion-label>
+            <pre>
+                {{this.newTaskName}}
+            </pre>
+            <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="DD MM YYYY" min="{{this.minDataFormatada()}}" max="{{this.maxDataFormatada(25)}}" placeholder="Selecionar Data de Inicio"></ion-datetime>
         </ion-item>
         <ion-item>
             <ion-label>Horario de Inicio</ion-label>

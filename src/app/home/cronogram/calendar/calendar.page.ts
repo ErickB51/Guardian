@@ -47,7 +47,7 @@ export class CalendarPage implements OnInit {
     const modal = await this.modalController.create({
         component: EventModalComponent
     });
-    modal.present();
+    return await modal.present();
 
   }
 

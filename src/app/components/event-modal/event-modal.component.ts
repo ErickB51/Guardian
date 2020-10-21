@@ -9,71 +9,73 @@ import { AccountService } from '../../account.service';
 })
 
 export class EventModalComponent implements OnInit {
-
+  
+  public data = new Date();
+  
+  public inicioData:Date;
+  public fimData:Date;
+  
   public newTaskName = 'Teste';
   public allDay = false;
-  public personal = false;
-  public mentor = false;
-  public dieta = false;
-  public produtividade = false;
 
-  constructor(private modalController : ModalController, private accountService: AccountService) { }
+  constructor(private modalController : ModalController, private accountService: AccountService) {}
 
-  ngOnInit() {}
+  ngOnInit() {} 
 
   public closeModal(){
     this.modalController.dismiss();
   }
 
-  public changeAllDay(){
-    if(!this.allDay){
-        this.allDay = true;
-    }else{
-        this.allDay = false;
-    }
-  }
-
-  public checkAllDay(){
-    return this.allDay;
-  }
-
-  public verificaGuardiaoSelecionadoModal(){
-    for(var i=0; i<4;i++){
-        switch(i){
-            case 0:
-                if(this.personal){
-                    return 'Personal';
-                }
-                break;
-            case 1:
-                if(this.mentor){
-                    return 'Mentor';
-                }
-                break;
-            case 2:
-                if(this.dieta){
-                    return 'Dieta';
-                }
-                break;
-            case 3:
-                if(this.produtividade){
-                    return 'Produtividade';
-                }
-                break;
-            default:
-                break;
-
-        }
-    }
-  }
-
   public addTask(){
-    this.accountService.createRandomEvents();
-    /*
-    this.accountService.novaTarefa(this.newTaskName, this.verificaGuardiaoSelecionadoModal(), this.startTime, this.endTime, this.allDay);
-    console.log(this.newTaskName,this.allDay);
-    */
+    //this.accountService.createRandomEvents();
+    this.accountService.criarEvento(this.newTaskName,this.inicioData,this.fimData,this.allDay);
     this.closeModal();
   }
+
+  public minDataFormatada(){
+    var gambiarra:number = this.data.getUTCMonth()+1;  
+      
+    var dia = '';
+    var mes = '';
+    var ano = this.data.getUTCFullYear();
+    
+    if(this.data.getUTCDate() < 10){
+        dia = '0' + this.data.getUTCDate();
+    }else{
+        dia = ''+this.data.getUTCDate();
+    }
+    
+    if(gambiarra < 10){
+        mes = '0' + gambiarra;
+    }else{
+        mes = ''+gambiarra;
+    }
+    
+    return '' + this.data.getUTCFullYear() + '-' + mes + '-' + dia;
+    
+  }
+
+  public maxDataFormatada(ano: number){
+      
+    var dia = '';
+    var mes = '';
+    var ano:number = this.data.getUTCFullYear()+ano;
+    
+    if(this.data.getUTCDate() < 10){
+        dia = '0' + this.data.getUTCDate();
+    }else{
+        dia = ''+this.data.getUTCDate();
+    }
+    
+    if(this.data.getUTCMonth() < 10){
+        mes = '0' + this.data.getUTCMonth();
+    }else{
+        mes = ''+this.data.getUTCMonth();
+    }
+    
+    return '' + ano + '-' + mes + '-' + dia;
+    
+  }
+  
 
 }

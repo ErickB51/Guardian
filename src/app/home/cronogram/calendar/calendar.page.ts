@@ -14,6 +14,9 @@ export class CalendarPage implements OnInit {
   viewTitle: string;
 
   calendar = {
+    formatWeekTitle: "MMMM yyyy, 'Semana' w",
+    noEventsLabel: "Sem eventos",
+    allDayLabel: "Dia",
     mode: 'month',
     currentDate: new Date()
   };

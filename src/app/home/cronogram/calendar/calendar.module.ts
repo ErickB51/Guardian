@@ -7,11 +7,10 @@ import { CalendarPage } from '../calendar/calendar.page';
 import { CalendarPageRoutingModule } from './calendar-routing.module';
 
 import { NgCalendarModule } from 'ionic2-calendar';
-import { CalModalPageModule } from 'src/app/pages/cal-modal/cal-modal.module';
 
 import { registerLocaleData } from '@angular/common';
-import localeDe from '@angular/common/locales/de'
-registerLocaleData(localeDe);
+import localePtBr from '@angular/common/locales/pt'
+registerLocaleData(localePtBr);
 
 @NgModule({
   imports: [
@@ -19,12 +18,11 @@ registerLocaleData(localeDe);
     FormsModule,
     IonicModule,
     CalendarPageRoutingModule,
-    NgCalendarModule,
-    CalModalPageModule
+    NgCalendarModule
   ],
   declarations: [CalendarPage],
   providers: [
-    { provide: LOCALE_ID, useValue: 'en-EN' }
+    { provide: LOCALE_ID, useValue: 'pt' }
   ]
 })
 export class CalendarPageModule {}

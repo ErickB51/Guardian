@@ -33,6 +33,9 @@
         [eventSource]="this.accountService.tarefas"
         [calendarMode]="calendar.mode"
         [currentDate]="calendar.currentDate"
+        [formatWeekTitle]="calendar.formatWeekTitle"
+        [allDayLabel]="calendar.allDayLabel"
+        [noEventsLabel]="calendar.noEventsLabel"
         (onTitleChanged)="onViewTitleChanged($event)"
         >
     </calendar>

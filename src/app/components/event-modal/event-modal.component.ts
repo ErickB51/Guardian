@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AccountService } from '../../account.service';
 
@@ -9,7 +9,7 @@ import { AccountService } from '../../account.service';
 })
 
 export class EventModalComponent implements OnInit {
-  
+    
   public data = new Date();
   
   public inicioData:Date;

@@ -160,7 +160,9 @@ export class AccountService {
   }
   
   criarEvento(title: string, startTime: Date, endTime: Date, allDay: boolean){
-      this.tarefas.push({title: title,startTime: startTime,endTime: endTime, allDay: allDay});
+      var tarefas = [];
+      tarefas.push({title: title,startTime: startTime,endTime: endTime, allDay: allDay});
+      this.tarefas = tarefas;
   }
 
 }

@@ -33,7 +33,7 @@ export class NewEventModalPage implements OnInit {
     
     if(this.allDay){
         this.accountService.criarEvento(this.accountService.verGuardiaoEquipado()+'-> '+this.newTaskName,new Date(this.inicioData.split('T')[0]),new Date(this.inicioData.split('T')[0]),this.allDay);
-    }else{
+    }else{    
         this.accountService.criarEvento(this.accountService.verGuardiaoEquipado()+'-> '+this.newTaskName,new Date(this.inicioData.split('T')[0]+'T'+this.horarioInicio.split('T')[1]),new Date(this.inicioData.split('T')[0]+'T'+this.horarioFim.split('T')[1]),this.allDay);
     }
     

@@ -58,6 +58,8 @@ export class CalendarPage implements OnInit {
         this.myCal.loadEvents();
     });
     
+    return await modal.present();
+    
   }
 
 

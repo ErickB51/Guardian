@@ -25,11 +25,9 @@
             <ion-label>Horario de Termino</ion-label>
             <ion-datetime [disabled]="this.allDay" [(ngModel)]="this.horarioFim" display-format="h:mm A" picker-format="h:mm A" placeholder="Selecionar Horario de Termino"></ion-datetime>
         </ion-item>
-        <ion-item>
             <ion-label>Durante o dia todo</ion-label>
             <ion-toggle [(ngModel)]="this.allDay" slot="end" false></ion-toggle>
         </ion-item>
-        
         <ion-row>
             <ion-col size="12">
                 <ion-button (click)="addTask()" expand="block">Nova tarefa</ion-button>

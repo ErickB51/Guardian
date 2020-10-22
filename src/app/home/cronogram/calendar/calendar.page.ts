@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CalendarComponent } from 'ionic2-calendar';
-import { EventModalComponent } from '../../../components/event-modal/event-modal.component';
+import { NewEventModalPage } from '../../../components/new-event-modal/new-event-modal.page';
 import { ModalController } from '@ionic/angular';
 import { AccountService } from '../../../account.service';
 
@@ -48,10 +48,16 @@ export class CalendarPage implements OnInit {
   public async showModal(){
     
     const modal = await this.modalController.create({
-        component: EventModalComponent
+        component: NewEventModalPage,
+        cssClass: 'new-event-modal'
     });
-    return await modal.present();
-
+    
+    await modal.present();
+    
+    modal.onDidDismiss().then((result) => {
+        this.myCal.loadEvents();
+    });
+    
   }
 
 

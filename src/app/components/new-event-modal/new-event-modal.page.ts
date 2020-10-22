@@ -1,21 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AccountService } from '../../account.service';
 
 @Component({
-  selector: 'app-event-modal',
-  templateUrl: './event-modal.component.html',
-  styleUrls: ['./event-modal.component.scss'],
+  selector: 'app-new-event-modal',
+  templateUrl: './new-event-modal.page.html',
+  styleUrls: ['./new-event-modal.page.scss'],
 })
-
-export class EventModalComponent implements OnInit {
-    
+export class NewEventModalPage implements OnInit {
+   
   public data = new Date();
   
-  public inicioData:Date;
-  public fimData:Date;
+  public inicioData = '';
   
-  public newTaskName = 'Teste';
+  public horarioInicio = '';
+  public horarioFim = '';
+  
+  public newTaskName = '';
   public allDay = false;
 
   constructor(private modalController : ModalController, private accountService: AccountService) {}
@@ -26,9 +27,16 @@ export class EventModalComponent implements OnInit {
     this.modalController.dismiss();
   }
 
-  public addTask(){
-    //this.accountService.createRandomEvents();
-    this.accountService.criarEvento(this.newTaskName,this.inicioData,this.fimData,this.allDay);
+  public addTask(){ 
+    
+    console.log(this.allDay);
+    
+    if(this.allDay){
+        this.accountService.criarEvento(this.accountService.verGuardiaoEquipado()+'-> '+this.newTaskName,new Date(this.inicioData.split('T')[0]),new Date(this.inicioData.split('T')[0]),this.allDay);
+    }else{
+        this.accountService.criarEvento(this.accountService.verGuardiaoEquipado()+'-> '+this.newTaskName,new Date(this.horarioInicio),new Date(this.horarioFim),this.allDay);
+    }
+    
     this.closeModal();
   }
 
@@ -76,6 +84,4 @@ export class EventModalComponent implements OnInit {
     return '' + ano + '-' + mes + '-' + dia;
     
   }
-  
-
 }

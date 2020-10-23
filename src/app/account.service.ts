@@ -159,8 +159,8 @@ export class AccountService {
     }
   }
   
-  criarEvento(title: string, startTime: Date, endTime: Date, allDay: boolean){
-      this.tarefas.push({title: title,startTime: startTime,endTime: endTime, allDay: allDay});
+  criarEvento(title: string, desc: string, startTime: Date, endTime: Date, allDay: boolean){
+      this.tarefas.push({title: title, desc: desc, startTime: startTime,endTime: endTime, allDay: allDay});
   }
 
 }

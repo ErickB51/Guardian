@@ -14,17 +14,21 @@
             <ion-input [(ngModel)]="this.newTaskName" placeholder="Titulo"></ion-input>
         </ion-item>
         <ion-item>
+            <ion-input [(ngModel)]="this.newTaskDescription" placeholder="Descricao"></ion-input>
+        </ion-item>
+        <ion-item>
             <ion-label>Data de Inicio</ion-label>
-            <ion-datetime [(ngModel)]="this.inicioData" displayFormat="YYYY-MM-DD" pickerFormat="DD MM YYYY" min="{{this.minDataFormatada()}}" max="{{this.maxDataFormatada(25)}}" placeholder="Selecionar Data de Inicio"></ion-datetime>
+            <ion-datetime placeholder='YYYY-MM-DD' [(ngModel)]="this.inicioData" displayFormat="YYYY-MM-DD" pickerFormat="DD MM YYYY" min="{{this.minDataFormatada()}}" max="{{this.maxDataFormatada(25)}}"></ion-datetime>
         </ion-item>
         <ion-item>
             <ion-label>Horario de Inicio</ion-label>
-            <ion-datetime [disabled]="this.allDay" [(ngModel)]="this.horarioInicio" display-format="h:mm A" picker-format="h:mm A" placeholder="Selecionar Horario de Inicio"></ion-datetime>
+            <ion-datetime placeholder='HH:mm' [disabled]="this.allDay" [(ngModel)]="this.horarioInicio" display-format="HH:mm" picker-format="HH:mm" hourValues="{{this.valoresDeHoras()}}" minuteValues="{{this.valoresDeMinutos()}}"></ion-datetime>
         </ion-item>
         <ion-item>
             <ion-label>Horario de Termino</ion-label>
-            <ion-datetime [disabled]="this.allDay" [(ngModel)]="this.horarioFim" display-format="h:mm A" picker-format="h:mm A" placeholder="Selecionar Horario de Termino"></ion-datetime>
+            <ion-datetime placeholder='HH:mm' [disabled]="this.allDay || this.horarioInicio === ''" [(ngModel)]="this.horarioFim" display-format="HH:mm" picker-format="HH:mm" hourValues="{{this.valoresDeHoras()}}" minuteValues="{{this.valoresDeMinutos()}}"></ion-datetime>
         </ion-item>
+        <ion-item>
             <ion-label>Durante o dia todo</ion-label>
             <ion-toggle [(ngModel)]="this.allDay" slot="end" false></ion-toggle>
         </ion-item>

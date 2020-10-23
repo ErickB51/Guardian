@@ -10,7 +10,7 @@
             <ion-label>Dia</ion-label>
         </ion-segment-button>
     </ion-segment>
-
+      
     <ion-row class="ion-justify-content-center">
         <ion-col size="2">
             <ion-button fill="clear" (click)="back()">
@@ -36,6 +36,7 @@
         [formatWeekTitle]="calendar.formatWeekTitle"
         [allDayLabel]="calendar.allDayLabel"
         [noEventsLabel]="calendar.noEventsLabel"
+        (onEventSelected)="onEventSelected($event)"
         (onTitleChanged)="onViewTitleChanged($event)"
         >
     </calendar>

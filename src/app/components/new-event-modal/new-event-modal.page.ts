@@ -17,6 +17,7 @@ export class NewEventModalPage implements OnInit {
   public horarioFim = '';
   
   public newTaskName = '';
+  public newTaskDescription = '';
   public allDay = false;
 
   constructor(private modalController : ModalController, private accountService: AccountService) {}
@@ -29,37 +30,34 @@ export class NewEventModalPage implements OnInit {
 
   public addTask(){ 
     
-    console.log(this.allDay);
-    
     if(this.allDay){
-        this.accountService.criarEvento(this.accountService.verGuardiaoEquipado()+'-> '+this.newTaskName,new Date(this.inicioData.split('T')[0]),new Date(this.inicioData.split('T')[0]),this.allDay);
-    }else{    
-        this.accountService.criarEvento(this.accountService.verGuardiaoEquipado()+'-> '+this.newTaskName,new Date(this.inicioData.split('T')[0]+'T'+this.horarioInicio.split('T')[1]),new Date(this.inicioData.split('T')[0]+'T'+this.horarioFim.split('T')[1]),this.allDay);
+        this.accountService.criarEvento(this.accountService.verGuardiaoEquipado()+'-> '+this.newTaskName,this.newTaskDescription,new Date(this.inicioData.split('T')[0]+'T00:00:00.000-03:00'),new Date(this.inicioData.split('T')[0]+'T00:00:00.000-03:00'),this.allDay);
+    }else{
+        this.accountService.criarEvento(this.accountService.verGuardiaoEquipado()+'-> '+this.newTaskName,this.newTaskDescription,new Date(this.inicioData.split('T')[0]+'T'+this.horarioInicio.split('T')[1]),new Date(this.inicioData.split('T')[0]+'T'+this.horarioFim.split('T')[1]),this.allDay);
     }
     
     this.closeModal();
   }
 
-  public minDataFormatada(){
-    var gambiarra:number = this.data.getUTCMonth()+1;  
+  public minDataFormatada(){  
       
     var dia = '';
     var mes = '';
-    var ano = this.data.getUTCFullYear();
+    var ano = this.data.getFullYear();
     
-    if(this.data.getUTCDate() < 10){
-        dia = '0' + this.data.getUTCDate();
+    if(this.data.getDate() < 10){
+        dia = '0' + this.data.getDate();
     }else{
-        dia = ''+this.data.getUTCDate();
+        dia = ''+this.data.getDate();
     }
     
-    if(gambiarra < 10){
-        mes = '0' + gambiarra;
+    if((this.data.getMonth()+1) < 10){
+        mes = '0' + (this.data.getMonth()+1);
     }else{
-        mes = ''+gambiarra;
+        mes = ''+(this.data.getMonth()+1);
     }
     
-    return '' + this.data.getUTCFullYear() + '-' + mes + '-' + dia;
+    return '' + ano + '-' + mes + '-' + dia;
     
   }
 
@@ -67,21 +65,52 @@ export class NewEventModalPage implements OnInit {
       
     var dia = '';
     var mes = '';
-    var ano:number = this.data.getUTCFullYear()+ano;
+    var ano:number = this.data.getFullYear()+ano;
     
-    if(this.data.getUTCDate() < 10){
-        dia = '0' + this.data.getUTCDate();
+    if(this.data.getDate() < 10){
+        dia = '0' + this.data.getDate();
     }else{
-        dia = ''+this.data.getUTCDate();
+        dia = ''+this.data.getDate();
     }
     
-    if(this.data.getUTCMonth() < 10){
-        mes = '0' + this.data.getUTCMonth();
+    if(this.data.getMonth() < 10){
+        mes = '0' + this.data.getMonth();
     }else{
-        mes = ''+this.data.getUTCMonth();
+        mes = ''+this.data.getMonth();
     }
     
     return '' + ano + '-' + mes + '-' + dia;
     
   }
+  
+  public valoresDeHoras(){
+      
+      var actualHour = this.data.getHours();
+      var horas = [];
+      var tamanhoHoras = 24 - actualHour;
+      
+      for(var i=0; i<tamanhoHoras; i++){
+        horas[i] = actualHour+i;
+      }
+      
+      return horas;
+  }
+  
+  public valoresDeMinutos(){
+      
+      var actualMinute = this.data.getMinutes();
+      var minutos = [];
+      var tamanhoMinutos = 60 - actualMinute;
+      
+      for(var i=0; i<tamanhoMinutos; i++){
+          
+          minutos[i] = actualMinute+i;
+          
+      }
+      
+      return minutos;
+      
+      
+  }
+  
 }

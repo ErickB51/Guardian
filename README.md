@@ -9,7 +9,6 @@ Entrega 01 - [Video com as funcionalidades da entrega 1](https://youtu.be/DzQnVv
 <h2 align='center'>Instruções</h2>
 
 ### Dependências
-- IDE - [Visual Studio Code](https://code.visualstudio.com/) ou IDE de sua preferência.
 - [Typescript](https://www.typescriptlang.org/)
 - [Ionic 3](https://ionicframework.com/)
 - [NodeJs](https://nodejs.org)

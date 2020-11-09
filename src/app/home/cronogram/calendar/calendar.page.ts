@@ -52,9 +52,62 @@ export class CalendarPage implements OnInit {
     }
   }
   
+  completarEvento(event){
+    for(var i=0; i<this.accountService.tarefas.length; i++){
+        if(this.accountService.tarefas[i] === event){
+            var txt: string;
+            txt = event.title.split('->')[0];
+            if(txt === 'Personal'){
+                this.accountService.guardioes[0].xp += 0.1;
+                this.accountService.moedas += 50;
+                if(this.accountService.guardioes[0].xp == 1.0){
+                    this.accountService.guardioes[0].xp = 0;
+                    this.accountService.guardioes[0].lvl += 1;
+                }
+            }else{
+                if(txt === 'Mentor'){
+                    this.accountService.guardioes[1].xp += 0.1;
+                    this.accountService.moedas += 50;
+                    if(this.accountService.guardioes[1].xp == 1.0){
+                        this.accountService.guardioes[1].xp = 0;
+                        this.accountService.guardioes[1].lvl += 1;
+                    }
+                }else{
+                    if(txt === 'Dieta'){
+                    this.accountService.guardioes[2].xp += 0.1;
+                    this.accountService.moedas += 50;
+                    if(this.accountService.guardioes[2].xp == 1.0){
+                        this.accountService.guardioes[2].xp = 0;
+                        this.accountService.guardioes[2].lvl += 1;
+                    }
+                    }else{
+                        if(txt === 'Produtividade'){
+                            this.accountService.guardioes[3].xp += 0.1;
+                            this.accountService.moedas += 50;
+                            if(this.accountService.guardioes[3].xp == 1.0){
+                                this.accountService.guardioes[3].xp = 0;
+                                this.accountService.guardioes[3].lvl += 1;
+                            }
+                        }else{
+                            console.log('Erro');
+                        }
+                    }
+                }
+            }
+            this.accountService.atualizarConquistas(1);
+            this.accountService.storage.set('guardioes',this.accountService.guardioes);
+            this.accountService.storage.set('moedas',this.accountService.moedas);
+            this.accountService.storage.set('conquistas',this.accountService.conquistas);
+            this.removeEvents(event);
+        }
+    }
+  }
+  
   public async onEventSelected(event){
       let start = formatDate(event.startTime,'short',this.locale);
       let end = formatDate(event.endTime,'short',this.locale);
+      
+      let data = new Date();
       
       let message = '';
       
@@ -68,7 +121,7 @@ export class CalendarPage implements OnInit {
           header: event.title.split('->')[1],
           subHeader: event.desc,
           message: message,
-          buttons: [{text: 'OK'},{text: 'Delete',handler: () => {this.removeEvents(event)}}]
+          buttons: [{text: 'OK'}, {text: 'Completar evento',handler: () => {if(data >= event.endTime){this.completarEvento(event);this.presentToast('Evento concluido com sucesso',2000)}else{this.presentToast('Voce nao ultrapassou a data do evento para poder completa-lo!',2000)}}}, {text: 'Delete',handler: () => {this.removeEvents(event)}}],
       });
       alert.present();
   }
@@ -79,10 +132,6 @@ export class CalendarPage implements OnInit {
           duration: duration
       });
       await toast.present();
-  }
-  
-  public closeToast(){
-      this.toastController.dismiss();
   }
 
   public async showModal(){

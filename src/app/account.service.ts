@@ -186,5 +186,5 @@ export class AccountService {
       this.tarefas.push({title: title, desc: desc, startTime: startTime,endTime: endTime, allDay: allDay});
       this.storage.set('tarefas',this.tarefas);
   }
-
+    
 }

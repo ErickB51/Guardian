@@ -154,8 +154,16 @@ export class NewEventModalPage implements OnInit {
       tempInputs.push(this.validateAndRemoveSpaces());
       
       if(!(tempInputs[0].newTaskName === '')){
-            if(!(tempInputs[0].newTaskDescription === '') && !(this.inicioData === '') && !(this.horarioInicio === '') && !(this.horarioFim === '')){
-              return true;
+            if(!(tempInputs[0].newTaskDescription === '') && !(this.inicioData === '')){
+              if(this.allDay){
+                  return true
+              }else{
+                  if(!(this.horarioInicio === '') && !(this.horarioFim === '')){
+                      return true
+                  }else{
+                      return false;
+                  }
+              }
           }else{
               return false;
           }

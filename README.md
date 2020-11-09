@@ -16,7 +16,7 @@ Este auxílio ocorre através de uma integração entre diversas ferramentas com
 ## Videos
 
 * **Video 1/3 entregue no dia 19/10/2020:** [Video 1/3](https://youtu.be/DzQnVvNmvt0)
-* **Video 2/3 entregue no dia 09/11/2020:** [Video 2/3](https://www.youtube.com/watch?v=QzQnasdawT0)
+* **Video 2/3 entregue no dia 09/11/2020:** [Video 2/3](https://youtu.be/X6HnWhxBPKE)
 * **Vídeo 3/3 será entregue no dia 07/12/2020:**
 
 ## Aplicação

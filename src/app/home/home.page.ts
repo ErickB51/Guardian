@@ -1,6 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AccountService } from '../account.service';
-import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -10,7 +8,10 @@ import { Storage } from '@ionic/storage';
 })
 export class HomePage implements OnInit {
     
-    constructor(private accountService: AccountService, private router: Router, private storage: Storage) {
+    public auth;
+    
+    constructor(private storage: Storage) {
+       this.auth = false;
        this.storage.get('firstTime').then(result=>{
            if(!result){
                this.storage.set('nome','');
@@ -20,12 +21,11 @@ export class HomePage implements OnInit {
                this.storage.set('visuais',[{nome: 'Amarelao', equipado: true},{nome: 'Verdao', equipado: true},{nome: 'Cinzao', equipado: true},{nome: 'Vermelhao', equipado: true}]);
                this.storage.set('guardioes',[{tipo: 'Personal', xp: 0.0, selecionado: false, visual: 'Amarelao', lvl: 1},{tipo: 'Mentor', xp: 0.0, selecionado: false, visual: 'Verdao', lvl: 1},{tipo: 'Dieta', xp: 0.0, selecionado: false, visual: 'Cinzao', lvl: 1},{tipo: 'Produtividade', xp: 0.0, selecionado: false, visual: 'Vermelhao', lvl: 1}]);
                this.storage.set('tarefas',[]);
-           }else{
-               this.router.navigate(['/home/cronogram']);
+               this.auth = true;
            }
        });
     }
 
     ngOnInit() {}
-
+        
 }

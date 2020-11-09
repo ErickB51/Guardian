@@ -46,7 +46,7 @@ export class NewEventModalPage implements OnInit {
         
         this.closeModal('Ok');
     }else{
-        this.presentToast('Apenas texto sem espacos no titulo/descricao!',2000);
+        this.presentToast('Preencha os campos corretamente!',2000);
     }
     
   }

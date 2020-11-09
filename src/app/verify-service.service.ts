@@ -12,7 +12,6 @@ export class VerifyServiceService implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot): boolean{
       var temp: boolean;
       temp = true;
-      console.log('Instanciou as variaves');
       this.storage.get('firstTime').then(result=>{
           if(result){
               this.router.navigate(['./home/cronogram']);

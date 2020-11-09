@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { AccountService } from '../account.service';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -10,7 +11,7 @@ export class HomePage implements OnInit {
     
     public auth;
     
-    constructor(private storage: Storage) {
+    constructor(private storage: Storage, private accountService: AccountService) {
        this.auth = false;
        this.storage.get('firstTime').then(result=>{
            if(!result){

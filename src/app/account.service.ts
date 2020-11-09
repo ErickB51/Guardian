@@ -6,7 +6,8 @@ import { Storage } from '@ionic/storage';
   providedIn: 'root'
 })
 export class AccountService {
-
+  
+  public validaPassagem = false;
   public nome = '';
   public moedas = 0;
   public conquistas = [];
@@ -16,30 +17,56 @@ export class AccountService {
   public tarefas = [];
 
   constructor(private router: Router, private storage: Storage) {
-      this.storage.get('nome').then(result=>{
-          this.nome = result;
-      });
-      this.storage.get('moedas').then(result=>{
-          this.moedas = result;
-      });
-      this.storage.get('conquistas').then(result=>{
-          this.conquistas = result;
-      });
-      this.storage.get('configuracoes').then(result=>{
-          this.configuracoes = result;
-      });
-      this.storage.get('visuais').then(result=>{
-          this.visuais = result;
-      });
-      this.storage.get('guardioes').then(result=>{
-          this.guardioes = result;
-      });
-      this.storage.get('tarefas').then(result=>{
-          this.tarefas = result;
+      this.storage.get('firstTime').then(result=>{
+          if(result){
+            this.storage.get('nome').then(result=>{
+                this.nome = result;
+            });
+            this.storage.get('moedas').then(result=>{
+                this.moedas = result;
+            });
+            this.storage.get('conquistas').then(result=>{
+                this.conquistas = result;
+            });
+            this.storage.get('configuracoes').then(result=>{
+                this.configuracoes = result;
+            });
+            this.storage.get('visuais').then(result=>{
+                this.visuais = result;
+            });
+            this.storage.get('guardioes').then(result=>{
+                this.guardioes = result;
+            });
+            this.storage.get('tarefas').then(result=>{
+                this.tarefas = result;
+            });
+          }
       });
   }
   
   escolherGuardiao(tipoSelecionado: string){
+    this.storage.get('nome').then(result=>{
+          this.nome = result;
+    });
+    this.storage.get('moedas').then(result=>{
+        this.moedas = result;
+    });
+    this.storage.get('conquistas').then(result=>{
+        this.conquistas = result;
+    });
+    this.storage.get('configuracoes').then(result=>{
+        this.configuracoes = result;
+    });
+    this.storage.get('visuais').then(result=>{
+        this.visuais = result;
+    });
+    this.storage.get('guardioes').then(result=>{
+        this.guardioes = result;
+    });
+    this.storage.get('tarefas').then(result=>{
+        this.tarefas = result;
+    });
+    console.log(this.nome);
     for(var i=0; i<this.guardioes.length; i++){
         if(this.guardioes[i].tipo === tipoSelecionado){
             this.guardioes[i].selecionado = true;

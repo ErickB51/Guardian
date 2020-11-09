@@ -62,19 +62,19 @@ export class AccountService {
     });
     this.storage.get('guardioes').then(result=>{
         this.guardioes = result;
+        for(var i=0; i<this.guardioes.length; i++){
+            if(this.guardioes[i].tipo === tipoSelecionado){
+                this.guardioes[i].selecionado = true;
+                console.log(this.guardioes[i].tipo + " " + this.guardioes[i].selecionado);
+                this.storage.set('guardioes',this.guardioes);
+                this.storage.set('firstTime',true);
+            }
+        }
     });
     this.storage.get('tarefas').then(result=>{
         this.tarefas = result;
     });
-    console.log(this.nome);
-    for(var i=0; i<this.guardioes.length; i++){
-        if(this.guardioes[i].tipo === tipoSelecionado){
-            this.guardioes[i].selecionado = true;
-            console.log(this.guardioes[i].tipo + " " + this.guardioes[i].selecionado);
-        }
-    }
-    this.storage.set('guardioes',this.guardioes);
-    this.storage.set('firstTime',true);
+    
     this.router.navigate(['/home/cronogram/']);
   }
 

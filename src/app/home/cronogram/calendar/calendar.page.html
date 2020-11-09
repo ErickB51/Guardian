@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content scroll-y="auto">
     <ion-segment [(ngModel)]="calendar.mode">
         <ion-segment-button value="month">
             <ion-label>Mes</ion-label>
@@ -10,7 +10,7 @@
             <ion-label>Dia</ion-label>
         </ion-segment-button>
     </ion-segment>
-      
+
     <ion-row class="ion-justify-content-center">
         <ion-col size="2">
             <ion-button fill="clear" (click)="back()">
@@ -38,8 +38,18 @@
         [noEventsLabel]="calendar.noEventsLabel"
         (onEventSelected)="onEventSelected($event)"
         (onTitleChanged)="onViewTitleChanged($event)"
+        [monthviewDisplayEventTemplate]="template"
         >
     </calendar>
+
+    <ng-template #template let-view="view" let-row="row" let-col="col">
+        <div [class.with-event]="view.dates[row*7+col].events.length">
+            {{view.dates[row*7+col].label}}
+            <div class="indicator-container">
+                <div class="event-indicator" *ngFor="let e of view.dates[row*7+col].events"></div>
+            </div>
+        </div>
+    </ng-template>
 
     <ion-fab style="margin-right:10px; margin-bottom:10px" horizontal="end" vertical="bottom" slot="fixed">
         <ion-fab-button (click)="showModal()" color="light">

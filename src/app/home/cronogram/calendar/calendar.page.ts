@@ -43,8 +43,13 @@ export class CalendarPage implements OnInit {
     this.viewTitle = title;
   }
 
-  removeEvents() {
-    this.accountService.tarefas = [];
+  removeEvents(event) {
+    for(var i=0; i<this.accountService.tarefas.length; i++){
+        if(this.accountService.tarefas[i] === event){
+            this.accountService.tarefas.splice(i,1);
+            this.accountService.storage.set('tarefas',this.accountService.tarefas).then(result=>{this.myCal.loadEvents();});
+        }
+    }
   }
   
   public async onEventSelected(event){
@@ -63,7 +68,7 @@ export class CalendarPage implements OnInit {
           header: event.title.split('->')[1],
           subHeader: event.desc,
           message: message,
-          buttons: ['OK']
+          buttons: [{text: 'OK'},{text: 'Delete',handler: () => {this.removeEvents(event)}}]
       });
       alert.present();
   }

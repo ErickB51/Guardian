@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { AccountService } from '../../account.service';
 
 @Component({
@@ -20,23 +20,35 @@ export class NewEventModalPage implements OnInit {
   public newTaskDescription = '';
   public allDay = false;
 
-  constructor(private modalController : ModalController, private accountService: AccountService) {}
+  constructor(private modalController : ModalController, private accountService: AccountService, private toastController: ToastController) {}
 
   ngOnInit() {} 
 
-  public closeModal(){
-    this.modalController.dismiss();
+  public async presentToast(message: string, duration: number){
+      const toast = await this.toastController.create({
+          message: message,
+          duration: duration
+      });
+      await toast.present();
+  }
+
+  public closeModal(situacao: string){
+        this.modalController.dismiss(situacao);
   }
 
   public addTask(){ 
-    
-    if(this.allDay){
-        this.accountService.criarEvento(this.accountService.verGuardiaoEquipado()+'-> '+this.newTaskName,this.newTaskDescription,new Date(this.inicioData.split('T')[0]+'T00:00:00.000-03:00'),new Date(this.inicioData.split('T')[0]+'T00:00:00.000-03:00'),this.allDay);
+    if(this.checkFields()){
+        if(this.allDay){
+            this.accountService.criarEvento(this.accountService.verGuardiaoEquipado()+'-> '+this.newTaskName,this.newTaskDescription,new Date(this.inicioData.split('T')[0]+'T00:00:00.000Z'),new Date(this.inicioData.split('T')[0]+'T23:59:59.999Z'),this.allDay);
+        }else{
+            this.accountService.criarEvento(this.accountService.verGuardiaoEquipado()+'-> '+this.newTaskName,this.newTaskDescription,new Date(this.inicioData.split('T')[0]+'T'+this.horarioInicio.split('T')[1]),new Date(this.inicioData.split('T')[0]+'T'+this.horarioFim.split('T')[1]),this.allDay);
+        }
+        
+        this.closeModal('Ok');
     }else{
-        this.accountService.criarEvento(this.accountService.verGuardiaoEquipado()+'-> '+this.newTaskName,this.newTaskDescription,new Date(this.inicioData.split('T')[0]+'T'+this.horarioInicio.split('T')[1]),new Date(this.inicioData.split('T')[0]+'T'+this.horarioFim.split('T')[1]),this.allDay);
+        this.presentToast('Apenas texto sem espacos no titulo/descricao!',2000);
     }
     
-    this.closeModal();
   }
 
   public minDataFormatada(){  
@@ -110,6 +122,46 @@ export class NewEventModalPage implements OnInit {
       
       return minutos;
       
+      
+  }
+  
+  public validateAndRemoveSpaces(){
+      var tempTaskName = '';
+      var tempTaskDescription = '';
+      
+      for(var i=0; i<this.newTaskName.length; i++){
+          if(Number(this.newTaskName.charCodeAt(i)) > 64 && Number(this.newTaskName.charCodeAt(i)) < 91 || Number(this.newTaskName.charCodeAt(i)) > 96 && Number(this.newTaskName.charCodeAt(i)) < 123){
+
+              tempTaskName += this.newTaskName.charAt(i);
+              
+          }
+      }
+      
+      for(var i=0; i<this.newTaskDescription.length; i++){
+          if(Number(this.newTaskDescription.charCodeAt(i)) > 64 && Number(this.newTaskDescription.charCodeAt(i)) < 91 || Number(this.newTaskDescription.charCodeAt(i)) > 96 && Number(this.newTaskDescription.charCodeAt(i)) < 123){
+              
+              tempTaskDescription += this.newTaskDescription.charAt(i);
+              
+          }
+      }
+      
+      return {newTaskName: tempTaskName, newTaskDescription: tempTaskDescription};
+  }
+  
+  public checkFields(){
+      
+      var tempInputs = [];
+      tempInputs.push(this.validateAndRemoveSpaces());
+      
+      if(!(tempInputs[0].newTaskName === '')){
+            if(!(tempInputs[0].newTaskDescription === '') && !(this.inicioData === '') && !(this.horarioInicio === '') && !(this.horarioFim === '')){
+              return true;
+          }else{
+              return false;
+          }
+      }else{
+          return false;
+      }
       
   }
   

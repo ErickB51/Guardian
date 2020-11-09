@@ -1,49 +1,44 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
 
-  constructor(private router: Router) { }
-
   public nome = '';
-  public moedas = 10000;
-  
-  public conquistas = [
-    {titulo: 'Novato', tipo: 1, progresso: 0.0, tarefas: 1},
-    {titulo: 'Aprendiz', tipo: 1, progresso: 0.0, tarefas: 7},
-    {titulo: 'Guerreiro', tipo: 1, progresso: 0.0, tarefas: 15},
-    {titulo: 'Persistente', tipo: 1, progresso: 0.0, tarefas: 30},
-    {titulo: 'Audacioso', tipo: 1, progresso: 0.0, tarefas: 90},
-    {titulo: 'Praticamente uma Maquina', tipo: 1, progresso: 0.0, tarefas: 365},
-    {titulo: 'Chique', tipo: 2, progresso: 0.0, tarefas: 1},
-    {titulo: 'Refinado', tipo: 2,progresso: 0.0, tarefas: 5},
-    {titulo: 'Aspirante da Moda', tipo: 2, progresso: 0.0, tarefas: 10},
-    {titulo: 'Chavoso', tipo: 2, progresso: 0.0, tarefas: 15},
-    {titulo: 'Estilo Unico', tipo: 2, progresso: 0.0, tarefas: 20},
-    {titulo: 'Burgues', tipo: 2, progresso: 0.0, tarefas: 25}    
-  ];
-
-  public configuracoes = [ {val: "Vibracao", ativado: true},{val: "Efeitos Sonoros", ativado: true} ];
-
-  public visuais = [
-    {nome: 'Amarelao', equipado: true},
-    {nome: 'Verdao', equipado: true},
-    {nome: 'Cinzao', equipado: true},
-    {nome: 'Vermelhao', equipado: true}
-  ];
-
-  public guardioes = [
-    {tipo: 'Personal', xp: 0.0, selecionado: false, visual: 'Amarelao', lvl: 1},
-    {tipo: 'Mentor', xp: 0.0, selecionado: false, visual: 'Verdao', lvl: 1},
-    {tipo: 'Dieta', xp: 0.0, selecionado: false, visual: 'Cinzao', lvl: 1},
-    {tipo: 'Produtividade', xp: 0.0, selecionado: false, visual: 'Vermelhao', lvl: 1}
-  ];
-
+  public moedas = 0;
+  public conquistas = [];
+  public configuracoes = [];
+  public visuais = [];
+  public guardioes = [];
   public tarefas = [];
 
+  constructor(private router: Router, private storage: Storage) {
+      this.storage.get('nome').then(result=>{
+          this.nome = result;
+      });
+      this.storage.get('moedas').then(result=>{
+          this.moedas = result;
+      });
+      this.storage.get('conquistas').then(result=>{
+          this.conquistas = result;
+      });
+      this.storage.get('configuracoes').then(result=>{
+          this.configuracoes = result;
+      });
+      this.storage.get('visuais').then(result=>{
+          this.visuais = result;
+      });
+      this.storage.get('guardioes').then(result=>{
+          this.guardioes = result;
+      });
+      this.storage.get('tarefas').then(result=>{
+          this.tarefas = result;
+      });
+  }
+  
   escolherGuardiao(tipoSelecionado: string){
     for(var i=0; i<this.guardioes.length; i++){
         if(this.guardioes[i].tipo === tipoSelecionado){
@@ -51,6 +46,8 @@ export class AccountService {
             console.log(this.guardioes[i].tipo + " " + this.guardioes[i].selecionado);
         }
     }
+    this.storage.set('guardioes',this.guardioes);
+    this.storage.set('firstTime',true);
     this.router.navigate(['/home/cronogram/']);
   }
 
@@ -105,21 +102,19 @@ export class AccountService {
         if(this.moedas > valor){
             this.moedas = this.moedas - valor;
             this.visuais.push({nome: visual, equipado: false});
-            console.log('Comprado com sucesso');
             this.atualizarConquistas(2);
+            this.storage.set('visuais',this.visuais);
+            this.storage.set('conquistas',this.conquistas);
             return 'Comprado com Sucesso!';
         }else{
-            console.log('Sem dinheiro');
             return 'Sem dinheiro para comprar!';
         }
     }else{
-        console.log('Voce ja tem este visual');
         return 'Voce ja tem este visual!';
     }
   }
 
   atualizarConquistas(tipo: number){
-    
     for(var i=0; i<this.conquistas.length; i++){
         if(this.conquistas[i].tipo == tipo){
             if(this.conquistas[i].progresso < 1.0){
@@ -157,10 +152,12 @@ export class AccountService {
             this.guardioes[i].selecionado = false;
         }
     }
+    this.storage.set('guardioes',this.guardioes);
   }
   
   criarEvento(title: string, desc: string, startTime: Date, endTime: Date, allDay: boolean){
       this.tarefas.push({title: title, desc: desc, startTime: startTime,endTime: endTime, allDay: allDay});
+      this.storage.set('tarefas',this.tarefas);
   }
 
 }

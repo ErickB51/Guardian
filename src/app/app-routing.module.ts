@@ -10,11 +10,7 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  },
-  {
-    path: 'new-event-modal',
-    loadChildren: () => import('./components/new-event-modal/new-event-modal.module').then( m => m.NewEventModalPageModule)
-  },
+  }
 ];
 
 @NgModule({

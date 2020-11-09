@@ -16,7 +16,7 @@ export class AccountService {
   public guardioes = [];
   public tarefas = [];
 
-  constructor(private router: Router, private storage: Storage) {
+  constructor(private router: Router, public storage: Storage) {
       this.storage.get('firstTime').then(result=>{
           if(result){
             this.storage.get('nome').then(result=>{

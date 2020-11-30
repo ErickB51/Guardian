@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-//import { MenuController } from '@ionic/angular';
 import { AccountService } from '../../account.service';
 
 @Component({

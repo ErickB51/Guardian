@@ -60,32 +60,32 @@ export class CalendarPage implements OnInit {
             if(txt === 'Personal'){
                 this.accountService.guardioes[0].xp += 0.1;
                 this.accountService.moedas += 50;
-                if(this.accountService.guardioes[0].xp == 1.0){
-                    this.accountService.guardioes[0].xp = 0;
+                if(this.accountService.guardioes[0].xp >= 1.0){
+                    this.accountService.guardioes[0].xp = 0.0;
                     this.accountService.guardioes[0].lvl += 1;
                 }
             }else{
                 if(txt === 'Mentor'){
                     this.accountService.guardioes[1].xp += 0.1;
                     this.accountService.moedas += 50;
-                    if(this.accountService.guardioes[1].xp == 1.0){
-                        this.accountService.guardioes[1].xp = 0;
+                    if(this.accountService.guardioes[1].xp >= 1.0){
+                        this.accountService.guardioes[1].xp = 0.0;
                         this.accountService.guardioes[1].lvl += 1;
                     }
                 }else{
                     if(txt === 'Dieta'){
                     this.accountService.guardioes[2].xp += 0.1;
                     this.accountService.moedas += 50;
-                    if(this.accountService.guardioes[2].xp == 1.0){
-                        this.accountService.guardioes[2].xp = 0;
+                    if(this.accountService.guardioes[2].xp >= 1.0){
+                        this.accountService.guardioes[2].xp = 0.0;
                         this.accountService.guardioes[2].lvl += 1;
                     }
                     }else{
                         if(txt === 'Produtividade'){
                             this.accountService.guardioes[3].xp += 0.1;
                             this.accountService.moedas += 50;
-                            if(this.accountService.guardioes[3].xp == 1.0){
-                                this.accountService.guardioes[3].xp = 0;
+                            if(this.accountService.guardioes[3].xp >= 1.0){
+                                this.accountService.guardioes[3].xp = 0.0;
                                 this.accountService.guardioes[3].lvl += 1;
                             }
                         }else{

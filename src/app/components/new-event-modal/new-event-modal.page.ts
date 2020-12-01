@@ -8,8 +8,9 @@ import { AccountService } from '../../account.service';
   styleUrls: ['./new-event-modal.page.scss'],
 })
 export class NewEventModalPage implements OnInit {
-   
-  public data = new Date();
+  
+  public minData = this.minDataFormatada();
+  public maxData = this.maxDataFormatada(25);
   
   public inicioData = '';
   
@@ -53,20 +54,22 @@ export class NewEventModalPage implements OnInit {
 
   public minDataFormatada(){  
       
+    var data:Date = new Date();
+      
     var dia = '';
     var mes = '';
-    var ano = this.data.getFullYear();
+    var ano = data.getFullYear();
     
-    if(this.data.getDate() < 10){
-        dia = '0' + this.data.getDate();
+    if(data.getDate() < 10){
+        dia = '0' + data.getDate();
     }else{
-        dia = ''+this.data.getDate();
+        dia = ''+data.getDate();
     }
     
-    if((this.data.getMonth()+1) < 10){
-        mes = '0' + (this.data.getMonth()+1);
+    if((data.getMonth()+1) < 10){
+        mes = '0' + (data.getMonth()+1);
     }else{
-        mes = ''+(this.data.getMonth()+1);
+        mes = ''+(data.getMonth()+1);
     }
     
     return '' + ano + '-' + mes + '-' + dia;
@@ -75,54 +78,26 @@ export class NewEventModalPage implements OnInit {
 
   public maxDataFormatada(ano: number){
       
+    var data:Date = new Date();
+      
     var dia = '';
     var mes = '';
-    var ano:number = this.data.getFullYear()+ano;
+    var ano:number = data.getFullYear()+ano;
     
-    if(this.data.getDate() < 10){
-        dia = '0' + this.data.getDate();
+    if(data.getDate() < 10){
+        dia = '0' + data.getDate();
     }else{
-        dia = ''+this.data.getDate();
+        dia = ''+data.getDate();
     }
     
-    if(this.data.getMonth() < 10){
-        mes = '0' + this.data.getMonth();
+    if(data.getMonth() < 10){
+        mes = '0' + data.getMonth();
     }else{
-        mes = ''+this.data.getMonth();
+        mes = ''+data.getMonth();
     }
     
     return '' + ano + '-' + mes + '-' + dia;
     
-  }
-  
-  public valoresDeHoras(){
-      
-      var actualHour = this.data.getHours();
-      var horas = [];
-      var tamanhoHoras = 24 - actualHour;
-      
-      for(var i=0; i<tamanhoHoras; i++){
-        horas[i] = actualHour+i;
-      }
-      
-      return horas;
-  }
-  
-  public valoresDeMinutos(){
-      
-      var actualMinute = this.data.getMinutes();
-      var minutos = [];
-      var tamanhoMinutos = 60 - actualMinute;
-      
-      for(var i=0; i<tamanhoMinutos; i++){
-          
-          minutos[i] = actualMinute+i;
-          
-      }
-      
-      return minutos;
-      
-      
   }
   
   public validateAndRemoveSpaces(){
@@ -158,7 +133,9 @@ export class NewEventModalPage implements OnInit {
               if(this.allDay){
                   return true
               }else{
-                  if(!(this.horarioInicio === '') && !(this.horarioFim === '')){
+                  var tI:Date = new Date(this.horarioInicio);
+                  var tF:Date = new Date(this.horarioFim);
+                  if(!(this.horarioInicio === '') && !(this.horarioFim === '') && tI <= tF){
                       return true
                   }else{
                       return false;
@@ -173,4 +150,21 @@ export class NewEventModalPage implements OnInit {
       
   }
   
+  public atualizarData(reset: string){
+      
+      if(reset === 'Horario'){
+          this.horarioFim = '';
+      }
+      
+      this.minData = this.minDataFormatada();
+      this.maxData = this.maxDataFormatada(25);
+  }
+  
+  public formatarData(){
+      if(!(this.inicioData.split('T')[0] === this.minDataFormatada())){
+          this.inicioData = this.inicioData.split('T')[0]+'T'+'00:00:00.000-03:00';
+      }
+  }
+  
 }
+

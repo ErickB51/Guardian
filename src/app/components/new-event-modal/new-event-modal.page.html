@@ -18,15 +18,15 @@
         </ion-item>
         <ion-item>
             <ion-label>Data de Inicio</ion-label>
-            <ion-datetime placeholder='YYYY-MM-DD' [(ngModel)]="this.inicioData" displayFormat="YYYY-MM-DD" pickerFormat="DD MM YYYY" min="{{this.minDataFormatada()}}" max="{{this.maxDataFormatada(25)}}"></ion-datetime>
+            <ion-datetime (click)="this.atualizarData()" (ionChange)="formatarData()" placeholder='YYYY-MM-DD' [(ngModel)]="this.inicioData" displayFormat="YYYY-MM-DD" pickerFormat="DD MM YYYY" min="{{this.minData}}" max="{{this.maxData}}"></ion-datetime>
         </ion-item>
         <ion-item>
             <ion-label>Horario de Inicio</ion-label>
-            <ion-datetime placeholder='HH:mm' [disabled]="this.allDay" [(ngModel)]="this.horarioInicio" display-format="HH:mm" picker-format="HH:mm" hourValues="{{this.valoresDeHoras()}}" minuteValues="{{this.valoresDeMinutos()}}"></ion-datetime>
+            <ion-datetime (click)="this.atualizarData('Horario')" placeholder='HH:mm' [disabled]="this.allDay || this.inicioData === ''" [(ngModel)]="this.horarioInicio" display-format="HH:mm" picker-format="HH:mm" min="{{this.inicioData}}" max="{{this.maxData}}"></ion-datetime>
         </ion-item>
         <ion-item>
             <ion-label>Horario de Termino</ion-label>
-            <ion-datetime placeholder='HH:mm' [disabled]="this.allDay || this.horarioInicio === ''" [(ngModel)]="this.horarioFim" display-format="HH:mm" picker-format="HH:mm" hourValues="{{this.valoresDeHoras()}}" minuteValues="{{this.valoresDeMinutos()}}"></ion-datetime>
+            <ion-datetime (click)="this.atualizarData('')" placeholder='HH:mm' [disabled]="this.allDay || this.horarioInicio === ''" [(ngModel)]="this.horarioFim" display-format="HH:mm" picker-format="HH:mm" min="{{this.horarioInicio}}" max="{{this.maxData}}"></ion-datetime>
         </ion-item>
         <ion-item>
             <ion-label>Durante o dia todo</ion-label>

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AccountService } from '../account.service';
 import { Storage } from '@ionic/storage';
+import { ToastController} from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -10,12 +11,13 @@ import { Storage } from '@ionic/storage';
 export class HomePage implements OnInit {
     
     public auth;
+    public nome = '';
     
-    constructor(private storage: Storage, private accountService: AccountService) {
+    constructor(private storage: Storage, private accountService: AccountService, private toastController: ToastController) {
        this.auth = false;
        this.storage.get('firstTime').then(result=>{
            if(!result){
-               this.storage.set('nome','');
+               this.storage.set('nome', '');
                this.storage.set('moedas',0);
                this.storage.set('conquistas',[{titulo: 'Novato', tipo: 1, progresso: 0.0, tarefas: 1},{titulo: 'Aprendiz', tipo: 1, progresso: 0.0, tarefas: 7},{titulo: 'Guerreiro', tipo: 1, progresso: 0.0, tarefas: 15},{titulo: 'Persistente', tipo: 1, progresso: 0.0, tarefas: 30},{titulo: 'Audacioso', tipo: 1, progresso: 0.0, tarefas: 90},{titulo: 'Praticamente uma Maquina', tipo: 1, progresso: 0.0, tarefas: 365},{titulo: 'Chique', tipo: 2, progresso: 0.0, tarefas: 1},{titulo: 'Refinado', tipo: 2,progresso: 0.0, tarefas: 5},{titulo: 'Aspirante da Moda', tipo: 2, progresso: 0.0, tarefas: 10},{titulo: 'Chavoso', tipo: 2, progresso: 0.0, tarefas: 15},{titulo: 'Estilo Unico', tipo: 2, progresso: 0.0, tarefas: 20},{titulo: 'Burgues', tipo: 2, progresso: 0.0, tarefas: 25}]);
                this.storage.set('configuracoes',[{val: "Vibracao", ativado: true},{val: "Efeitos Sonoros", ativado: true}]);
@@ -28,5 +30,23 @@ export class HomePage implements OnInit {
     }
 
     ngOnInit() {}
-        
+
+    public configurarUsuario(guardiao: string){
+        var tempNome: string = '';
+        tempNome = this.nome.trimStart();
+
+        if(tempNome === ''){
+            this.nome = '';
+            this.presentToast();
+        } 
+        else {
+            this.accountService.escolherGuardiao(guardiao, tempNome);
+        }
+    }
+
+    public async presentToast(){
+        const toast = await this.toastController.create({message: 'Por favor, insira um nome válido!', duration: 1000});
+        await toast.present();
+    }
+
 }

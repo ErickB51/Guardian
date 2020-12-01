@@ -44,9 +44,12 @@ export class AccountService {
       });
   }
   
-  escolherGuardiao(tipoSelecionado: string){
-    this.storage.get('nome').then(result=>{
-          this.nome = result;
+  escolherGuardiao(tipoSelecionado: string, nome: string){
+    
+    this.storage.set('nome', nome).then(test=>{
+        this.storage.get('nome').then(result=>{
+            this.nome = result;
+        });
     });
     this.storage.get('moedas').then(result=>{
         this.moedas = result;
@@ -185,6 +188,18 @@ export class AccountService {
   criarEvento(title: string, desc: string, startTime: Date, endTime: Date, allDay: boolean){
       this.tarefas.push({title: title, desc: desc, startTime: startTime,endTime: endTime, allDay: allDay});
       this.storage.set('tarefas',this.tarefas);
+  }
+  
+  obterNome(){
+    var tempNome: string='';
+    if(this.nome.split(' ').length > 0 && this.nome.split(' ').length < 2){
+        tempNome += this.nome.split(' ')[0].charAt(0).toUpperCase();
+    }
+
+    if(this.nome.split(' ').length > 1){
+        tempNome += this.nome.split(' ')[0].charAt(0).toUpperCase() + this.nome.split(' ')[1].charAt(0).toUpperCase();
+    }
+    return tempNome;
   }
     
 }

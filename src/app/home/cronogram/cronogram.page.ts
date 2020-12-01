@@ -8,7 +8,11 @@ import { AccountService } from '../../account.service';
 })
 export class CronogramPage implements OnInit {
 
-    constructor(private accountService: AccountService) {}
+    constructor(private accountService: AccountService) {
+
+      
+ 
+    }
 
     ngOnInit() {}
     

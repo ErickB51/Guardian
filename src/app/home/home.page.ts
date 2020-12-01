@@ -33,7 +33,7 @@ export class HomePage implements OnInit {
 
     public configurarUsuario(guardiao: string){
         var tempNome: string = '';
-        tempNome = this.nome.trimStart();
+        tempNome = this.nome.trim();
 
         if(tempNome === ''){
             this.nome = '';

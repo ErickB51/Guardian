@@ -9,6 +9,8 @@ import { AccountService } from '../../account.service';
 })
 export class NewEventModalPage implements OnInit {
   
+  public passou = false;  
+    
   public minData = this.minDataFormatada();
   public maxData = this.maxDataFormatada(25);
   
@@ -152,18 +154,74 @@ export class NewEventModalPage implements OnInit {
   
   public atualizarData(reset: string){
       
+      this.passou = false;
+      
+      this.minData = this.minDataFormatada();
+      this.maxData = this.maxDataFormatada(25);
+      
+      //Caso a data seja alterada então os campos são resetados
+      if(reset === 'Data'){
+          this.horarioInicio = '';
+          this.horarioFim = '';
+      }
+      
+      //Caso o horário de inicio seja alterado então o campo de término é resetado
       if(reset === 'Horario'){
           this.horarioFim = '';
       }
       
-      this.minData = this.minDataFormatada();
-      this.maxData = this.maxDataFormatada(25);
+      console.log(this.inicioData);
+      console.log(this.horarioInicio);
+      console.log(this.horarioFim);
+      
   }
   
   public formatarData(){
-      if(!(this.inicioData.split('T')[0] === this.minDataFormatada())){
-          this.inicioData = this.inicioData.split('T')[0]+'T'+'00:00:00.000-03:00';
+    //Continuar aqui formatando data para valores minimos dinamicos
+    if(!this.passou){
+        if(!(this.inicioData.split('T')[0] === this.minDataFormatada())){
+            this.inicioData = this.inicioData.split('T')[0]+'T'+'00:00:00.000-03:00';
+        }else{
+            var data:Date = new Date;
+            this.inicioData = this.inicioData.split('T')[0]+'T'+formatarHoras(data.getHours())+':'+formatarMinutos(data.getMinutes())+':'formatarSegundos(data.getSeconds())+'.'+formatarMilisegundso(data.getMilliseconds());
+        }
+        console.log(this.inicioData);
+        console.log(this.horarioInicio);
+        console.log(this.horarioFim);
+        this.passou = true
+    }
+  }
+        
+  public formatarHoras(horas: number){
+    if(horas<10){
+        return '0'+horas;
+    }
+    return horas;
+      
+  }
+  
+  public formatarMinutos(minutos: number){
+    if(minutos < 10){
+        return '0'+minutos;
+    }
+    return minutos;
+  }
+  
+  public formatarSegundos(segundos: number){
+      if(segundos < 10){
+          return '0'+segundos;
       }
+      return segundos;
+  }
+  
+  public formatarMilisegundos(milisegundos: number){
+      if(milisegundos < 10){
+          return '00'+milisegundos;
+      }
+      if(milisegundos < 100){
+          return '0'+milisegundos;
+      }
+      return milisegundos;
   }
   
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class AccountService {
   public guardioes = [];
   public tarefas = [];
 
-  constructor(private router: Router, public storage: Storage) {
+  constructor(private router: Router, public storage: Storage, private localNotifications: LocalNotifications) {
       this.storage.get('firstTime').then(result=>{
           if(result){
             this.storage.get('nome').then(result=>{
@@ -186,7 +187,16 @@ export class AccountService {
   }
   
   criarEvento(title: string, desc: string, startTime: Date, endTime: Date, allDay: boolean){
-      this.tarefas.push({title: title, desc: desc, startTime: startTime,endTime: endTime, allDay: allDay});
+      this.tarefas.push({title: title, desc: desc, startTime: startTime, endTime: endTime, allDay: allDay});
+      
+      //LocalNotifications - pensar em um jeito de usar isso - Incompleto
+      this.localNotifications.schedule({
+        text: (''+title+'\n'+desc),
+        sound: 'file://sound.mp3',
+        trigger: {at: endTime},
+        led: 'FF0000'
+      });
+      
       this.storage.set('tarefas',this.tarefas);
   }
   

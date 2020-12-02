@@ -18,7 +18,8 @@
         </ion-item>
         <ion-item>
             <ion-label>Data de Inicio</ion-label>
-            <ion-datetime (click)="this.atualizarData()" (ionChange)="formatarData()" placeholder='YYYY-MM-DD' [(ngModel)]="this.inicioData" displayFormat="YYYY-MM-DD" pickerFormat="DD MM YYYY" min="{{this.minData}}" max="{{this.maxData}}"></ion-datetime>
+            <!--(ionChange)="formatarData()"-->
+            <ion-datetime (click)="this.atualizarData('Data')" (ionChange)="formatarData()" placeholder='YYYY-MM-DD' [(ngModel)]="this.inicioData" displayFormat="YYYY-MM-DD" pickerFormat="DD MM YYYY" min="{{this.minData}}" max="{{this.maxData}}"></ion-datetime>
         </ion-item>
         <ion-item>
             <ion-label>Horario de Inicio</ion-label>

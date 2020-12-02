@@ -60,34 +60,78 @@ export class CalendarPage implements OnInit {
             if(txt === 'Personal'){
                 this.accountService.guardioes[0].xp += 0.1;
                 this.accountService.moedas += 50;
+                var tmp: number = this.accountService.verConquistas();
+                this.accountService.atualizarConquistas(3);
+                if(this.accountService.verConquistas() > tmp){
+                    this.presentToast('Nova conquista desbloqueada!', 1000);
+                    this.accountService.guardioes[0].xp += 0.3;
+                    this.accountService.moedas += 100;
+                }
+
                 if(this.accountService.guardioes[0].xp >= 1.0){
                     this.accountService.guardioes[0].xp = 0.0;
                     this.accountService.guardioes[0].lvl += 1;
                 }
+                this.accountService.storage.set('guardioes', this.accountService.guardioes);
+                this.accountService.storage.set('moedas', this.accountService.moedas);
             }else{
                 if(txt === 'Mentor'){
                     this.accountService.guardioes[1].xp += 0.1;
                     this.accountService.moedas += 50;
+                    var tmp: number = this.accountService.verConquistas();
+                    this.accountService.atualizarConquistas(4);
+
+                    if(this.accountService.verConquistas() > tmp){
+                        this.presentToast('Nova conquista desbloqueada!', 1000);
+                        this.accountService.guardioes[1].xp += 0.3;
+                        this.accountService.moedas += 100;
+                        
+                    }
+                    
                     if(this.accountService.guardioes[1].xp >= 1.0){
                         this.accountService.guardioes[1].xp = 0.0;
                         this.accountService.guardioes[1].lvl += 1;
                     }
+                    this.accountService.storage.set('guardioes', this.accountService.guardioes);
+                    this.accountService.storage.set('moedas', this.accountService.moedas);
                 }else{
                     if(txt === 'Dieta'){
                     this.accountService.guardioes[2].xp += 0.1;
                     this.accountService.moedas += 50;
+
+                    var tmp: number = this.accountService.verConquistas();
+                    this.accountService.atualizarConquistas(5);
+                    if(this.accountService.verConquistas() > tmp){
+                        this.presentToast('Nova conquista desbloqueada!', 1000);
+                        this.accountService.guardioes[2].xp += 0.3;
+                        this.accountService.moedas += 100;
+                    }
+
                     if(this.accountService.guardioes[2].xp >= 1.0){
                         this.accountService.guardioes[2].xp = 0.0;
                         this.accountService.guardioes[2].lvl += 1;
                     }
+                    this.accountService.storage.set('guardioes', this.accountService.guardioes);
+                    this.accountService.storage.set('moedas', this.accountService.moedas);
                     }else{
                         if(txt === 'Produtividade'){
                             this.accountService.guardioes[3].xp += 0.1;
                             this.accountService.moedas += 50;
+                            var tmp: number = this.accountService.verConquistas();
+                            this.accountService.atualizarConquistas(6);
+
+                            if(this.accountService.verConquistas() > tmp){
+                                this.presentToast('Nova conquista desbloqueada!', 1000);
+                                this.accountService.guardioes[3].xp += 0.3;
+                                this.accountService.moedas += 100;
+                            }
+
                             if(this.accountService.guardioes[3].xp >= 1.0){
                                 this.accountService.guardioes[3].xp = 0.0;
                                 this.accountService.guardioes[3].lvl += 1;
                             }
+                            this.accountService.storage.set('guardioes', this.accountService.guardioes);
+                            this.accountService.storage.set('moedas', this.accountService.moedas);
                         }else{
                             console.log('Erro');
                         }

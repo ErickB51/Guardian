@@ -130,7 +130,7 @@ export class AccountService {
 
   comprarVisual(visual: string, valor: number){
     if(!this.verificaVisual(visual)){
-        if(this.moedas > valor){
+        if(this.moedas >= valor){
             this.moedas = this.moedas - valor;
             this.visuais.push({nome: visual, equipado: false});
             this.atualizarConquistas(2);

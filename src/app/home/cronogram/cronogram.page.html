@@ -5,7 +5,7 @@
         </ion-buttons>
         <ion-buttons slot="end">
             <ion-fab horizontal="end" vertical="start" slot="fixed">
-                <ion-fab-button color="light" style="padding:6px">
+                <ion-fab-button color="light" style="padding:10px">
                     <div id="profileImage">{{this.accountService.obterNome()}}</div>
                 </ion-fab-button>
                 <ion-fab-list side="start">
@@ -33,7 +33,7 @@
 <ion-menu contentId="menu-content" side="start" type="overlay">
     <ion-header>
         <ion-toolbar>
-            <ion-menu-toggle><ion-item menuClose><ion-title>Menu</ion-title></ion-item></ion-menu-toggle>
+            <ion-menu-toggle><ion-item menuClose><ion-title style="font-size: 18px;">Menu</ion-title></ion-item></ion-menu-toggle>
         </ion-toolbar>
     </ion-header>
     <ion-content>
@@ -41,31 +41,31 @@
             <ion-menu-toggle>
                 <ion-item routerLink="/home/cronogram/calendar">
                     <ion-icon slot="start" name="calendar-sharp"></ion-icon>
-                    <ion-label>Cronograma</ion-label>
+                    <ion-label style="font-size: 22px;">Cronograma</ion-label>
                 </ion-item>
             </ion-menu-toggle>
             <ion-menu-toggle>
                 <ion-item routerLink="/home/cronogram/guardians">
                     <ion-icon slot="start" name="school-sharp"></ion-icon>
-                    <ion-label>Guardiões</ion-label>
+                    <ion-label style="font-size: 22px;">Guardiões</ion-label>
                 </ion-item>
             </ion-menu-toggle>
             <ion-menu-toggle>
                 <ion-item routerLink="/home/cronogram/prizes">
                     <ion-icon slot="start" name="medal-sharp"></ion-icon>
-                    <ion-label>Prêmios</ion-label>
+                    <ion-label style="font-size: 22px;">Prêmios</ion-label>
                 </ion-item>
             </ion-menu-toggle>
             <ion-menu-toggle>
                 <ion-item routerLink="/home/cronogram/skinstore">
                     <ion-icon slot="start" name="storefront-sharp"></ion-icon>
-                    <ion-label>Loja de Visuais</ion-label>
+                    <ion-label style="font-size: 22px;">Loja de Visuais</ion-label>
                 </ion-item>
             </ion-menu-toggle>
             <ion-menu-toggle>
                 <ion-item routerLink="/home/cronogram/settings">
                     <ion-icon slot="start" name="settings-sharp"></ion-icon>
-                    <ion-label>Configurações</ion-label>
+                    <ion-label style="font-size: 22px;">Configurações</ion-label>
                 </ion-item>
             </ion-menu-toggle>
         </ion-list>

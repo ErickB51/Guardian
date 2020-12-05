@@ -1,0 +1,28 @@
+ion-card {
+    padding-bottom: 30px;
+}
+
+ion-card ion-card-header ion-card-title {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+ion-card ion-card-header ion-card-subtitle {
+    font-size: 12px;
+    margin-bottom: 0px;
+}
+
+ion-card ion-card-content div ion-row ion-col ion-button {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+ion-card ion-card-content div ion-row ion-col ion-text p {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+ion-card ion-card-content div ion-row ion-col ion-text p ion-progress-bar {
+    height: 15px;
+    margin-bottom: 5px;
+}

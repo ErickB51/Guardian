@@ -159,31 +159,24 @@ export class NewEventModalPage implements OnInit {
       this.minData = this.minDataFormatada();
       this.maxData = this.maxDataFormatada(25);
       
-      //Caso a data seja alterada então os campos são resetados
       if(reset === 'Data'){
           this.horarioInicio = '';
           this.horarioFim = '';
       }
       
-      //Caso o horário de inicio seja alterado então o campo de término é resetado
       if(reset === 'Horario'){
           this.horarioFim = '';
       }
       
-      console.log(this.inicioData);
-      console.log(this.horarioInicio);
-      console.log(this.horarioFim);
-      
   }
   
   public formatarData(){
-    //Continuar aqui formatando data para valores minimos dinamicos
     if(!this.passou){
         if(!(this.inicioData.split('T')[0] === this.minDataFormatada())){
             this.inicioData = this.inicioData.split('T')[0]+'T'+'00:00:00.000-03:00';
         }else{
             var data:Date = new Date;
-            this.inicioData = this.inicioData.split('T')[0]+'T'+formatarHoras(data.getHours())+':'+formatarMinutos(data.getMinutes())+':'formatarSegundos(data.getSeconds())+'.'+formatarMilisegundso(data.getMilliseconds());
+            this.inicioData = this.inicioData.split('T')[0]+'T'+this.formatarHoras(data.getHours())+':'+this.formatarMinutos(data.getMinutes())+':'+this.formatarSegundos(data.getSeconds())+'.'+this.formatarMilisegundos(data.getMilliseconds())+this.formatarTimezoneOffset(data.getTimezoneOffset());
         }
         console.log(this.inicioData);
         console.log(this.horarioInicio);
@@ -222,6 +215,16 @@ export class NewEventModalPage implements OnInit {
           return '0'+milisegundos;
       }
       return milisegundos;
+  }
+  
+  public formatarTimezoneOffset(minutos: number){
+      var tmp: string = '';
+      if(minutos < 0){
+          tmp += '-';
+      }else{
+          tmp += '+';
+      }
+      return tmp+this.formatarHoras(minutos/60)+':'+this.formatarMinutos(minutos%60);
   }
   
 }

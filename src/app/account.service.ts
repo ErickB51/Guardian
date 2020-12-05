@@ -189,15 +189,18 @@ export class AccountService {
   criarEvento(title: string, desc: string, startTime: Date, endTime: Date, allDay: boolean){
       this.tarefas.push({title: title, desc: desc, startTime: startTime, endTime: endTime, allDay: allDay});
       
-      //LocalNotifications - pensar em um jeito de usar isso - Incompleto
-      this.localNotifications.schedule({
-        text: (''+title+'\n'+desc),
-        sound: 'file://sound.mp3',
-        trigger: {at: endTime},
-        led: 'FF0000'
+      this.storage.get('tarefas').then(result=>{
+        this.localNotifications.schedule({
+            id: result.length,
+            text: (''+title+'\n'+desc),
+            sound: 'file://sound.mp3',
+            trigger: {at: endTime},
+            led: 'FF0000'
+        });
+        
+        this.storage.set('tarefas',this.tarefas);
       });
       
-      this.storage.set('tarefas',this.tarefas);
   }
   
   obterNome(){
@@ -210,6 +213,97 @@ export class AccountService {
         tempNome += this.nome.split(' ')[0].charAt(0).toUpperCase() + this.nome.split(' ')[1].charAt(0).toUpperCase();
     }
     return tempNome;
+  }
+  
+  completarEvento(event){
+      var resultados = [];
+      var tmp:number;
+      
+      for(var i=0; i<this.tarefas.length; i++){
+          if(this.tarefas[i] === event){
+              var txt:string;
+              txt = event.title.split('->')[0];
+              console.log(txt);
+              if(txt === 'Personal'){
+                  this.guardioes[0].xp += 0.1;
+                  this.moedas += 50;
+                  tmp = this.verConquistas();
+                  this.atualizarConquistas(3);
+                  if(this.verConquistas() > tmp){
+                      resultados['conquista'] = true;
+                      this.guardioes[0].xp += 0.3;
+                      this.moedas += 100;
+                  }
+                  if(this.guardioes[0].xp >= 1.0){
+                      this.guardioes[0].xp = 0.0;
+                      this.guardioes[0].lvl += 1; 
+                  }
+              }else{
+                  if(txt === 'Mentor'){
+                      this.guardioes[1].xp += 0.1;
+                      this.moedas += 50;
+                      tmp = this.verConquistas();
+                      this.atualizarConquistas(4);
+                      if(this.verConquistas() > tmp){
+                          resultados['conquista'] = true;
+                          this.guardioes[1].xp += 0.3;
+                          this.moedas += 100;
+                      }
+                      if(this.guardioes[1].xp >= 1.0){
+                          this.guardioes[1].xp = 0.0;
+                          this.guardioes[1].lvl += 1;
+                      }
+                  }else{
+                      if(txt === 'Dieta'){
+                          this.guardioes[2].xp += 0.1;
+                          this.moedas += 50;
+                          tmp = this.verConquistas();
+                          this.atualizarConquistas(5);
+                          if(this.verConquistas() > tmp){
+                              resultados['conquista'] = true;
+                              this.guardioes[2].xp += 0.3;
+                              this.moedas += 100;
+                          }
+                          if(this.guardioes[2].xp >= 1.0){
+                              this.guardioes[2].xp = 0.0;
+                              this.guardioes[2].lvl += 1;
+                          }
+                      }else{
+                          if(txt === 'Produtividade'){
+                              this.guardioes[3].xp += 0.1;
+                              this.moedas += 50;
+                              tmp = this.verConquistas();
+                              this.atualizarConquistas(6);
+                              if(this.verConquistas() > tmp){
+                                  resultados['conquista'] = true;
+                                  this.guardioes[3].xp += 0.3;
+                                  this.moedas += 100;
+                              }
+                              if(this.guardioes[3].xp >= 1.0){
+                                  this.guardioes[3].xp = 0.0;
+                                  this.guardioes[3].lvl += 1;
+                              }
+                          }else{
+                              console.log('Erro');
+                          }
+                      }
+                  }
+              }
+          }
+      }
+      this.atualizarConquistas(1);
+      this.storage.set('guardioes',this.guardioes);
+      this.storage.set('moedas',this.moedas);
+      this.storage.set('conquistas',this.conquistas);
+      return resultados;
+  }
+  
+  obterConquista(numero: number){
+    for(var i=0; i<this.conquistas.length; i++){
+        if(i == numero){
+            return this.conquistas[i].progresso;
+        }
+    }
   }
     
 }

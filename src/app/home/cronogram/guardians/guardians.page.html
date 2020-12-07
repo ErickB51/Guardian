@@ -1,109 +1,129 @@
 <ion-content class="ion-padding">
-  <ion-row>
-      <ion-col>
-          <ion-card>
-              <ion-img src="https://i.ibb.co/0jVsxPC/robo-1.png" alt="robo-1"></ion-img>
-              <ion-card-header>
-                  <ion-card-title class="ion-text-center">
-                      Guardião Personal
-                  </ion-card-title>
-                  <ion-card-subtitle class="ion-text-center">
-                      Este é o seu guardião com foco nos exercicios físicos
-                  </ion-card-subtitle>
-              </ion-card-header>
-              <ion-card-content>
-                <div class="ion-text-center">
-                    <ion-row expand="block">
-                        <ion-col>
+    <ion-row>
+        <ion-col>
+            <ion-card>
+                <ion-img [src]="this.srcPersonal" alt="robo-1"></ion-img>
+                <ion-card-header>
+                    <ion-card-title class="ion-text-center">
+                        Guardião Personal
+                    </ion-card-title>
+                    <ion-card-subtitle class="ion-text-center">
+                        Este é o seu guardião com foco nos exercicios físicos
+                    </ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content>
+                    <div class="ion-text-center">
+                        <ion-row expand="block">
+                            <ion-col>
+                                <ion-item>
+                                    <ion-select #selectPersonal (click)="this.visuaisDisponiveis('Personal')" placeholder="Equipar visual..." [(ngModel)]="this.visualEscolhidoPersonal" ok-text="Selecionar" cancel-text="Cancelar" (ion-change)="this.accountService.atualizarVisual(this.visualEscolhidoPersonal,0)">
+                                        <ion-select-option *ngFor="let obj of this.visuais" value="{{obj.nome}}">{{obj.nome}}</ion-select-option>
+                                    </ion-select>
+                                </ion-item>
                                 <ion-button (click)="this.accountService.reescolherGuardiao('Personal')" color="tertiary" size='small' [disabled]="this.accountService.verificarGuardiao('Personal')">{{this.accountService.verificarGuardiao('Personal') ? 'Selecionado' : 'Selecionar' }}</ion-button>
-                            <ion-text color="primary">
-                              <p>XP<ion-progress-bar color="primary" [value]="this.accountService.verXPGuardiao('Personal')"></ion-progress-bar></p>
-                              <p><strong>Level {{this.accountService.verLvlGuardiao('Personal')}}</strong></p>
-                          </ion-text>
-                        </ion-col>
-                    </ion-row>
-                </div>
-            </ion-card-content>
-          </ion-card>
-      </ion-col>
+                                <ion-text color="primary">
+                                    <p>XP<ion-progress-bar color="primary" [value]="this.accountService.verXPGuardiao('Personal')"></ion-progress-bar></p>
+                                    <p><strong>Level {{this.accountService.verLvlGuardiao('Personal')}}</strong></p>
+                                </ion-text>
+                            </ion-col>
+                        </ion-row>
+                    </div>
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
 
-      <ion-col>
-          <ion-card>
-              <ion-img src="https://i.ibb.co/DgmN4J6/robo-2.png" alt="robo-2"></ion-img>
-              <ion-card-header>
-                  <ion-card-title class="ion-text-center">
-                      Guardião Mentor
-                  </ion-card-title>
-                  <ion-card-subtitle class="ion-text-center">
-                      Este é o seu guardião com foco nos estudos/conhecimentos.
-                  </ion-card-subtitle>
-              </ion-card-header>
-              <ion-card-content>
-                  <div class="ion-text-center">
-                      <ion-row expand="block">
-                          <ion-col>
-                              <ion-button (click)="this.accountService.reescolherGuardiao('Mentor')" color="tertiary" size="small" [disabled]="this.accountService.verificarGuardiao('Mentor')">{{this.accountService.verificarGuardiao('Mentor') ? 'Selecionado' : 'Selecionar' }}</ion-button>
-                              <ion-text color="primary">
-                                <p>XP<ion-progress-bar color="primary" [value]="this.accountService.verXPGuardiao('Mentor')"></ion-progress-bar></p>
-                                <p><strong>Level {{this.accountService.verLvlGuardiao('Mentor')}}</strong></p>
-                            </ion-text>
-                          </ion-col>
-                      </ion-row>
-                  </div>
-              </ion-card-content>
-          </ion-card>
-      </ion-col>
+        <ion-col>
+            <ion-card>
+                <ion-img [src]="this.srcMentor" alt="robo-2"></ion-img>
+                <ion-card-header>
+                    <ion-card-title class="ion-text-center">
+                        Guardião Mentor
+                    </ion-card-title>
+                    <ion-card-subtitle class="ion-text-center">
+                        Este é o seu guardião com foco nos estudos/conhecimentos.
+                    </ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content>
+                    <div class="ion-text-center">
+                        <ion-row expand="block">
+                            <ion-col>
+                                <ion-item>
+                                    <ion-select #selectMentor (click)="this.visuaisDisponiveis('Mentor')" placeholder="Equipar visual..." [(ngModel)]="this.visualEscolhidoMentor" ok-text="Selecionar" cancel-text="Cancelar" (ion-change)="this.accountService.atualizarVisual(this.visualEscolhidoMentor,1)">
+                                        <ion-select-option *ngFor="let obj of this.visuais" value="{{obj.nome}}">{{obj.nome}}</ion-select-option>
+                                    </ion-select>
+                                </ion-item>
+                                <ion-button (click)="this.accountService.reescolherGuardiao('Mentor')" color="tertiary" size="small" [disabled]="this.accountService.verificarGuardiao('Mentor')">{{this.accountService.verificarGuardiao('Mentor') ? 'Selecionado' : 'Selecionar' }}</ion-button>
+                                <ion-text color="primary">
+                                    <p>XP<ion-progress-bar color="primary" [value]="this.accountService.verXPGuardiao('Mentor')"></ion-progress-bar></p>
+                                    <p><strong>Level {{this.accountService.verLvlGuardiao('Mentor')}}</strong></p>
+                                </ion-text>
+                            </ion-col>
+                        </ion-row>
+                    </div>
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
 
-      <ion-col>
-          <ion-card>
-              <ion-img src="https://i.ibb.co/7GBMPgX/robo-3.png" alt="robo-3"></ion-img>
-              <ion-card-header>
-                  <ion-card-title class="ion-text-center">
-                      Guardião Alimentação
-                  </ion-card-title>
-                  <ion-card-subtitle class="ion-text-center">
-                      Este é o seu guardião com foco na sua alimentação.
-                  </ion-card-subtitle>
-              </ion-card-header>
-              <ion-card-content>
-                  <div class="ion-text-center">
-                      <ion-row expand="block">
-                          <ion-col>
-                              <ion-button (click)="this.accountService.reescolherGuardiao('Dieta')" color="tertiary" size='small' [disabled]="this.accountService.verificarGuardiao('Dieta')">{{this.accountService.verificarGuardiao('Dieta') ? 'Selecionado' : 'Selecionar' }}</ion-button>
-                              <ion-text color="primary">
-                                <p>XP<ion-progress-bar color="primary" [value]="this.accountService.verXPGuardiao('Dieta')"></ion-progress-bar></p>
-                                <p><strong>Level {{this.accountService.verLvlGuardiao('Dieta')}}</strong></p>
-                            </ion-text>
-                          </ion-col>
-                      </ion-row>
-                  </div>
-              </ion-card-content>
-          </ion-card>
-      </ion-col>
+        <ion-col>
+            <ion-card>
+                <ion-img [src]="this.srcDieta" alt="robo-3"></ion-img>
+                <ion-card-header>
+                    <ion-card-title class="ion-text-center">
+                        Guardião Alimentação
+                    </ion-card-title>
+                    <ion-card-subtitle class="ion-text-center">
+                        Este é o seu guardião com foco na sua alimentação.
+                    </ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content>
+                    <div class="ion-text-center">
+                        <ion-row expand="block">
+                            <ion-col>
+                                <ion-item>
+                                    <ion-select #selectDieta (click)="this.visuaisDisponiveis('Dieta')" placeholder="Equipar visual..." [(ngModel)]="this.visualEscolhidoDieta" ok-text="Selecionar" cancel-text="Cancelar" (ion-change)="this.accountService.atualizarVisual(this.visualEscolhidoDieta,2)">
+                                        <ion-select-option *ngFor="let obj of this.visuais" value="{{obj.nome}}">{{obj.nome}}</ion-select-option>
+                                    </ion-select>
+                                </ion-item>
+                                <ion-button (click)="this.accountService.reescolherGuardiao('Dieta')" color="tertiary" size='small' [disabled]="this.accountService.verificarGuardiao('Dieta')">{{this.accountService.verificarGuardiao('Dieta') ? 'Selecionado' : 'Selecionar' }}</ion-button>
+                                <ion-text color="primary">
+                                    <p>XP<ion-progress-bar color="primary" [value]="this.accountService.verXPGuardiao('Dieta')"></ion-progress-bar></p>
+                                    <p><strong>Level {{this.accountService.verLvlGuardiao('Dieta')}}</strong></p>
+                                </ion-text>
+                            </ion-col>
+                        </ion-row>
+                    </div>
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
 
-      <ion-col>
-          <ion-card>
-              <ion-img src="https://i.ibb.co/WnjYvS9/robo-4.png" alt="robo-4"></ion-img>
-              <ion-card-header>
-                  <ion-card-title class="ion-text-center">
-                      Guardião Produtividade
-                  </ion-card-title>
-                  <ion-card-subtitle class="ion-text-center">
-                      Este é o guardião com foco na sua produtividade
-                  </ion-card-subtitle>
-              </ion-card-header>
-              <ion-card-content>
-                  <div class="ion-text-center">
-                      <ion-row expand="block">
-                          <ion-col>
-                              <ion-button (click)="this.accountService.reescolherGuardiao('Produtividade')" color="tertiary" size='small' [disabled]="this.accountService.verificarGuardiao('Produtividade')">{{this.accountService.verificarGuardiao('Produtividade') ? 'Selecionado' : 'Selecionar' }}</ion-button>
-                              <ion-text color="primary">
-                                <p>XP<ion-progress-bar color="primary" [value]="this.accountService.verXPGuardiao('Produtividade')"></ion-progress-bar></p>
-                                <p><strong>Level {{this.accountService.verLvlGuardiao('Produtividade')}}</strong></p>
-                            </ion-text>
-                          </ion-col>
-                      </ion-row>
-                  </div>
-              </ion-card-content>
-          </ion-card>
-      </ion-col>
+        <ion-col>
+            <ion-card>
+                <ion-img [src]="this.srcProdutividade" alt="robo-4"></ion-img>
+                <ion-card-header>
+                    <ion-card-title class="ion-text-center">
+                        Guardião Produtividade
+                    </ion-card-title>
+                    <ion-card-subtitle class="ion-text-center">
+                        Este é o guardião com foco na sua produtividade
+                    </ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content>
+                    <div class="ion-text-center">
+                        <ion-row expand="block">
+                            <ion-col>
+                                <ion-item>
+                                    <ion-select #selectProdutividade (click)="this.visuaisDisponiveis('Produtividade')" placeholder="Equipar visual..." [(ngModel)]="this.visualEscolhidoProdutividade" ok-text="Selecionar" cancel-text="Cancelar" (ion-change)="this.accountService.atualizarVisual(this.visualEscolhidoProdutividade,3)">
+                                        <ion-select-option *ngFor="let obj of this.visuais" value="{{obj.nome}}">{{obj.nome}}</ion-select-option>
+                                    </ion-select>
+                                </ion-item>
+                                <ion-button (click)="this.accountService.reescolherGuardiao('Produtividade')" color="tertiary" size='small' [disabled]="this.accountService.verificarGuardiao('Produtividade')">{{this.accountService.verificarGuardiao('Produtividade') ? 'Selecionado' : 'Selecionar' }}</ion-button>
+                                <ion-text color="primary">
+                                    <p>XP<ion-progress-bar color="primary" [value]="this.accountService.verXPGuardiao('Produtividade')"></ion-progress-bar></p>
+                                    <p><strong>Level {{this.accountService.verLvlGuardiao('Produtividade')}}</strong></p>
+                                </ion-text>
+                            </ion-col>
+                        </ion-row>
+                    </div>
+                </ion-card-content>
+            </ion-card>
+        </ion-col>

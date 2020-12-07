@@ -22,8 +22,8 @@ export class SkinstorePage implements OnInit {
       await toast.present();
   }
   
-  public comprarVisual(name: string, value: number){
-      var tmp : string = this.accountService.comprarVisual(name,value);
+  public comprarVisual(name: string, value: number, href: string){
+      var tmp : string = this.accountService.comprarVisual(name,value,href);
       this.presentToast(tmp,1000);
   }
 }

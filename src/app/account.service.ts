@@ -2,10 +2,18 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { BehaviorSubject } from 'rxjs';
+
+export interface Visual {
+    nome: string;
+    equipado: boolean;
+    href: string;
+};
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AccountService {
   
   public validaPassagem = false;
@@ -13,7 +21,7 @@ export class AccountService {
   public moedas = 0;
   public conquistas = [];
   public configuracoes = [];
-  public visuais = [];
+  public visuais: Visual[] = [];
   public guardioes = [];
   public tarefas = [];
 
@@ -32,7 +40,7 @@ export class AccountService {
             this.storage.get('configuracoes').then(result=>{
                 this.configuracoes = result;
             });
-            this.storage.get('visuais').then(result=>{
+            this.storage.get('visuais').then((result: Visual[])=>{
                 this.visuais = result;
             });
             this.storage.get('guardioes').then(result=>{
@@ -128,14 +136,15 @@ export class AccountService {
     return false;
   }
 
-  comprarVisual(visual: string, valor: number){
+  comprarVisual(visual: string, valor: number, href: string){
     if(!this.verificaVisual(visual)){
         if(this.moedas >= valor){
             this.moedas = this.moedas - valor;
-            this.visuais.push({nome: visual, equipado: false});
+            this.visuais.push({nome: visual, equipado: false, href: href}); //href: href
             this.atualizarConquistas(2);
             this.storage.set('visuais',this.visuais);
             this.storage.set('conquistas',this.conquistas);
+            this.storage.set('moedas', this.moedas);
             return 'Comprado com Sucesso!';
         }else{
             return 'Sem dinheiro para comprar!';
@@ -190,12 +199,30 @@ export class AccountService {
       this.tarefas.push({title: title, desc: desc, startTime: startTime, endTime: endTime, allDay: allDay});
       
       this.storage.get('tarefas').then(result=>{
+        var taskID:number = result.length;
         this.localNotifications.schedule({
-            id: result.length,
+            id: taskID,
+            smallIcon: 'res://calendar',
             text: (''+title+'\n'+desc),
-            sound: 'file://sound.mp3',
+            sound: this.configuracoes[1].ativado ? 'file://sound.mp3' : null,
+            vibrate: this.configuracoes[0].ativado,
             trigger: {at: endTime},
-            led: 'FF0000'
+            foreground: true,
+            led: {color: 'FF00FF', on: 500, off: 500},
+            actions: [{
+                        id: 'completar',
+                        title: 'Completar'
+                        },
+                        {
+                        id: 'cancelar',
+                        title: 'Cancelar'
+                        }]
+        });
+        this.localNotifications.on('completar').subscribe(notification => {
+            this.completarEventoPorID(taskID);
+        });
+        this.localNotifications.on('cancelar').subscribe(notification => {
+            this.removerEventoPorID(taskID);
         });
         
         this.storage.set('tarefas',this.tarefas);
@@ -203,6 +230,88 @@ export class AccountService {
       
   }
   
+  removerNotificacao(id: number){
+      this.localNotifications.cancel(id);
+  }
+  
+  removerEventoPorID(posicao: number){
+      this.tarefas.splice(posicao,1);
+      this.storage.set('tarefas',this.tarefas).then(); //result=>{this.myCal.loadEvents();}
+  }
+  
+  completarEventoPorID(posicao: number){
+      var tmp:number;
+      var txt:string;
+      txt = this.tarefas[posicao].split('->')[0];
+      console.log(txt);
+      if(txt === 'Personal'){
+          this.guardioes[0].xp += 0.1;
+          this.moedas += 50;
+          tmp = this.verConquistas();
+          this.atualizarConquistas(3);
+          if(this.verConquistas() > tmp){
+              this.guardioes[0].xp += 0.3;
+              this.moedas += 100;
+          }
+          if(this.guardioes[0].xp >= 1.0){
+              this.guardioes[0].xp = 0.0;
+              this.guardioes[0].lvl += 1;
+          }
+      }else{
+          if(txt === 'Mentor'){
+              this.guardioes[1].xp += 0.1;
+              this.moedas += 50;
+              tmp = this.verConquistas();
+              this.atualizarConquistas(4);
+              if(this.verConquistas() > tmp){
+                  this.guardioes[1].xp += 0.3;
+                  this.moedas += 100;
+              }
+              if(this.guardioes[1].xp >= 1.0){
+                   this.guardioes[1].xp = 0.0;
+                   this.guardioes[1].lvl += 1;
+              }
+          }else{
+              if(txt === 'Dieta'){
+                    this.guardioes[2].xp += 0.1;
+                    this.moedas += 50;
+                    tmp = this.verConquistas();
+                    this.atualizarConquistas(5);
+                    if(this.verConquistas() > tmp){
+                        this.guardioes[2].xp += 0.3;
+                        this.moedas += 100;
+                    }
+                    if(this.guardioes[2].xp >= 1.0){
+                        this.guardioes[2].xp = 0.0;
+                        this.guardioes[2].lvl += 1;
+                    }
+               }else{
+                    if(txt === 'Produtividade'){
+                        this.guardioes[3].xp += 0.1;
+                        this.moedas += 50;
+                        tmp = this.verConquistas();
+                        this.atualizarConquistas(6);
+                        if(this.verConquistas() > tmp){
+                            this.guardioes[3].xp += 0.3;
+                            this.moedas += 100;
+                        }
+                        if(this.guardioes[3].xp >= 1.0){
+                            this.guardioes[3].xp = 0.0;
+                            this.guardioes[3].lvl += 1;
+                        }
+                    }else{
+                        console.log('Erro');
+                    }
+                }
+            }
+        }
+      this.atualizarConquistas(1);
+      this.storage.set('guardioes',this.guardioes);
+      this.storage.set('moedas',this.moedas);
+      this.storage.set('conquistas',this.conquistas);
+      this.removerEventoPorID(posicao);
+  }
+  //
   obterNome(){
     var tempNome: string='';
     if(this.nome.split(' ').length > 0 && this.nome.split(' ').length < 2){
@@ -305,5 +414,15 @@ export class AccountService {
         }
     }
   }
-    
+  
+  obterVisualDoGuardiao(guardiao: string){
+      var tmp:string = '';
+      for(var i=0; i<this.guardioes.length; i++){
+          if(this.guardioes[i].tipo === guardiao){
+              tmp = this.guardioes[i].href;
+          }
+      }
+      return tmp;
+  }
+  
 }

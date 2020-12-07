@@ -47,6 +47,7 @@ export class CalendarPage implements OnInit {
     for(var i=0; i<this.accountService.tarefas.length; i++){
         if(this.accountService.tarefas[i] === event){
             this.accountService.tarefas.splice(i,1);
+            this.accountService.removerNotificacao(i);
             this.accountService.storage.set('tarefas',this.accountService.tarefas).then(result=>{this.myCal.loadEvents();});
         }
     }

@@ -1,27 +1,23 @@
 <ion-content class="ion-no-padding">
     <ion-list>
-        <ion-list>
-            <ion-list-header>
-                <ion-label color="primary">
-                    Configuracoes Basicas
-                </ion-label>
-            </ion-list-header>
-            <ion-item *ngFor="let entry of this.accountService.configuracoes">
-                <ion-label><p>{{entry.val}}</p></ion-label>
-                <ion-toggle slot="end" [(ngModel)]="entry.ativado"></ion-toggle>
-            </ion-item>
-            <ion-list-header>
-                <ion-label color="primary">
-                    Sobre
-                </ion-label>
-            </ion-list-header>
-            <ion-item>
-                <ion-label class="ion-text-wrap">
-                    <p>Este aplicativo foi desenvolvido por alunos da Universidade Anhembi Morumbi como projeto para a materia de Computacao para Dipositivos Moveis. Ele tem como objetivo auxiliar no melhor aproveitamento do tempo e, por consequencia, aumentar a produtividade e eficiencia dos usuarios em diversas tarefas.</p>
-                </ion-label>
-            </ion-item>
-        </ion-list>
+        <ion-list-header>
+            <ion-label color="primary">
+                Configurações Básicas
+            </ion-label>
+        </ion-list-header>
+        <ion-item *ngFor="let entry of this.accountService.configuracoes">
+            <ion-label><p>{{entry.val}}</p></ion-label>
+            <ion-toggle slot="end" [(ngModel)]="entry.ativado"></ion-toggle>
+        </ion-item>
+        <ion-list-header>
+            <ion-label color="primary">
+                Sobre
+            </ion-label>
+        </ion-list-header>
+        <ion-item>
+            <ion-label class="ion-text-wrap">
+                <p>Este aplicativo foi desenvolvido por alunos da Universidade Anhembi Morumbi como projeto para a matéria de Computação para Dipositivos Móveis. Ele tem como objetivo auxiliar no melhor aproveitamento do tempo e, por consequência, aumentar a produtividade e eficiência dos usuários em diversas tarefas.</p>
+            </ion-label>
+        </ion-item>
     </ion-list>
-
-
 </ion-content>

@@ -1,0 +1,19 @@
+ion-card {
+    padding-bottom: 30px;
+}
+
+ion-card ion-card-header ion-card-title {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+ion-card ion-card-header ion-card-subtitle {
+    font-size: 12px;
+    margin-bottom: 0px;
+}
+
+ion-card ion-card-content div ion-row ion-col ion-button {
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-weight: bolder;;
+}

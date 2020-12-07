@@ -23,14 +23,14 @@
               {
                 "glob": "**/*",
                 "input": "src/assets",
-                "output": "assets",
-                "src/_redirects"
+                "output": "assets"
               },
               {
                 "glob": "**/*.svg",
                 "input": "node_modules/ionicons/dist/ionicons/svg",
                 "output": "./svg"
-              }
+              },
+              "src/_redirects"
             ],
             "styles": [
               {

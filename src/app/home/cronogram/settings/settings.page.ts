@@ -8,7 +8,7 @@ import { AccountService } from '../../../account.service';
 })
 export class SettingsPage implements OnInit {
 
-  constructor(private accountService: AccountService) { }
+  constructor(public accountService: AccountService) { }
 
   ngOnInit() {
   }

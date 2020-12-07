@@ -38,6 +38,10 @@ export class NewEventModalPage implements OnInit {
   public closeModal(situacao: string){
         this.modalController.dismiss(situacao);
   }
+  
+  public secondCloseModal(){
+        this.modalController.dismiss();
+  }
 
   public addTask(){ 
     if(this.checkFields()){

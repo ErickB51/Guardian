@@ -27,7 +27,7 @@ export class CalendarPage implements OnInit {
 
   @ViewChild(CalendarComponent) myCal: CalendarComponent;
 
-  constructor(private modalController: ModalController, private accountService: AccountService, @Inject(LOCALE_ID) private locale: string, private alertController: AlertController, private toastController: ToastController) {}
+  constructor(private modalController: ModalController, public accountService: AccountService, @Inject(LOCALE_ID) private locale: string, private alertController: AlertController, private toastController: ToastController) {}
 
   ngOnInit() {}
   

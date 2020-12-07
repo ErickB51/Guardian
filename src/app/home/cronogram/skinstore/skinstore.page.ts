@@ -9,7 +9,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class SkinstorePage implements OnInit {
 
-  constructor(private accountService: AccountService, private toastController: ToastController) { }
+  constructor(public accountService: AccountService, private toastController: ToastController) { }
 
   ngOnInit() {
   }

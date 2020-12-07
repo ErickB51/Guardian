@@ -32,7 +32,7 @@ export class GuardiansPage implements OnInit {
   public srcDieta = '';
   public srcProdutividade = '';
   
-  constructor(private accountService : AccountService, private toastController: ToastController) {
+  constructor(public accountService : AccountService, private toastController: ToastController) {
       this.accountService.storage.get('guardioes').then(result=>{
           this.accountService.storage.get('visuais').then(r=>{
               for(var i=0; i<r.length; i++){
